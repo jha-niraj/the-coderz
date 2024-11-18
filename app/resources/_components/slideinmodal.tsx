@@ -47,7 +47,8 @@ const SlideInModal: React.FC<SlideInModalProps> = ({ isOpen, onClose, lessonData
         <Sheet open={isOpen} onOpenChange={onClose}>
             <SheetContent
                 side="right"
-                className="w-full h-full sm:w-[80vw] md:w-[60vw] p-6 overflow-y-auto"
+                className="w-full h-full sm:w-[80vw] md:w-[55vw] sm:max-w-[80vw] p-6 overflow-y-auto"
+                style={{ maxWidth: '90vw' }}
             >
                 <SheetHeader className="pt-4">
                     <SheetTitle>{lessonData.title}</SheetTitle>

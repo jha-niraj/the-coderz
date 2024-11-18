@@ -115,7 +115,7 @@ const UnitAccordion: React.FC<UnitAccordionProps> = ({ unit, unitIndex, lessonDa
                             className="flex items-center space-x-2 w-24 sm:w-32"
                             onClick={() => setExpanded(!expanded)}
                         >
-                            <Badge className="bg-gray-700 text-gray-300 w-2/3 text-center">
+                            <Badge className="bg-gray-700 dark:bg-transparent dark:text-black text-gray-300 w-2/3 text-center">
                                 {unit.lessons.length} lessons
                             </Badge>
                             {expanded ? (
