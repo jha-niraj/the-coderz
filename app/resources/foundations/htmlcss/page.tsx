@@ -6,6 +6,7 @@ import QuizAndContribute from '../../_components/quizcontribute';
 import UnitAccordion from '../../_components/unitaccordian';
 import PageDescription from '../../_components/pagedesc';
 import { lessonData, units } from '../../data/htmlcss';
+import BottomCodingQuestion from '../../_components/bottomcoding';
 
 const pageDescription = {
     title: "HTML/CSS Learning Path",
@@ -29,7 +30,7 @@ const HTMLCSSResourcePage = () => {
                         <UnitAccordion key={index} unit={unit} unitIndex={index} lessonData={lessonData} />
                     ))
                 }
-                <QuizAndContribute contributelink='#' />
+                <BottomCodingQuestion />
             </div>
         </div>
     );

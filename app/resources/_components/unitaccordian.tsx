@@ -2,13 +2,15 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronUp, ExternalLink, Youtube, YoutubeIcon } from 'lucide-react';
+import { BookOpen, ChevronDown, ChevronUp, ExternalLink, FileText, Youtube, YoutubeIcon } from 'lucide-react';
 import Link from "next/link";
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import SlideInModal from "./slideinmodal";
 import QuizAndContribute from "./quizcontribute";
 import { useToast } from "@/hooks/use-toast";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 
 interface Lesson {
     title: string;
@@ -83,79 +85,69 @@ const UnitAccordion: React.FC<UnitAccordionProps> = ({ unit, unitIndex, lessonDa
             transition={{ duration: 0.5, delay: unitIndex * 0.1 }}
             className="w-full mt-2 overflow-hidden"
         >
-            <Card className="bg-black dark:bg-white border-gray-700">
-                <CardHeader
-                    className="cursor-pointer flex flex-col sm:flex-row items-center gap-4 sm:gap-2 justify-between"
-                >
-                    <div
-                        className="flex justify-between items-center w-full"
-                        onClick={() => setExpanded(!expanded)}
-                    >
-                        <CardTitle className="text-md sm:text-xl font-semibold text-white dark:text-black">
-                            {unit.title}
-                        </CardTitle>
-                    </div>
-                    <div className="flex w-full justify-between sm:justify-end sm:gap-6">
-                        <button
-                            // href={unit.quizlink}
-                            // target="_blank"
-                            className="shadow-[0_0_0_3px_#000000_inset] flex items-center justify-center w-full sm:w-auto p-2 bg-transparent border border-white dark:border-white text-white dark:text-black rounded-lg font-semibold transform hover:-translate-y-1 transition duration-400"
-                            onClick={handleQuizSelection}
-                        >
-                            Quiz <ExternalLink className="ml-2 h-4 w-4" />
-                        </button>
-                        <Link
-                            href={unit.youtube}
-                            target="_blank"
-                            className="flex items-center justify-center w-full sm:w-auto p-2 dark:text-white text-white font-semibold transform hover:-translate-y-1 transition duration-400"
-                        >
-                            <YoutubeIcon size={32} className="text-red-500" />
-                        </Link>
-                        <div
-                            className="flex items-center space-x-2 w-24 sm:w-32"
-                            onClick={() => setExpanded(!expanded)}
-                        >
-                            <Badge className="bg-gray-700 dark:bg-transparent dark:text-black text-gray-300 w-2/3 text-center">
-                                {unit.lessons.length} lessons
-                            </Badge>
-                            {expanded ? (
-                                <ChevronUp className="text-gray-200 dark:text-gray-600" />
-                            ) : (
-                                <ChevronDown className="text-gray-200 dark:text-gray-600" />
-                            )}
-                        </div>
-                    </div>
-                </CardHeader>
-                <AnimatePresence>
-                    {expanded && (
-                        <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <CardContent>
-                                <div className="grid gap-4 mt-4">
-                                    {
-                                        unit.lessons.map((lesson, lessonIndex) => (
-                                            <Card key={lessonIndex} className="bg-gray-700 w-[96%] mx-auto">
-                                                <CardContent className="p-4 flex justify-between items-center">
-                                                    <button
-                                                        onClick={() => handleLessonClick(lesson)}
-                                                        className="text-white hover:text-blue-300 text-left"
-                                                    >
-                                                        <span className="font-medium underline">{lesson.name}</span>
-                                                    </button>
-                                                </CardContent>
-                                            </Card>
-                                        ))
-                                    }
+            <div className="p-3">
+                <div className="mx-auto max-w-4xl">
+                    <div className="">
+                        <Card className="w-full transition-shadow hover:shadow-lg">
+                            <CardHeader className="">
+                                <div className="flex flex-col space-y-4 sm:flex-row sm:items-start sm:justify-between sm:space-y-0">
+                                    <div>
+                                        <CardTitle className="text-xl text-center sm:text-left font-medium text-primary">{unit.title}</CardTitle>
+                                    </div>
+                                    <div className="flex flex-wrap items-center justify-between sm:justify-end gap-2">
+                                        <Badge variant="secondary" className="text-sm">
+                                            <BookOpen className="mr-1 h-4 w-4" />
+                                            {unit.lessons.length} lessons
+                                        </Badge>
+                                        <Link href={unit.youtube} target="_blank">
+                                            <Button variant="outline" size="sm">
+                                                <Youtube className="mr-2 h-4 w-4" />
+                                                Video
+                                            </Button>
+                                        </Link>
+                                        <Link href={unit.quizlink} target="_blank">
+                                            <Button variant="outline" size="sm">
+                                                <FileText className="mr-2 h-4 w-4" />
+                                                Quiz
+                                            </Button>
+                                        </Link>
+
+                                    </div>
                                 </div>
+                            </CardHeader>
+                            <CardContent>
+                                <Accordion type="single" collapsible className="w-full">
+                                    <AccordionItem value="lessons">
+                                        <AccordionTrigger className="text-lg font-semibold">
+                                            Course Content
+                                        </AccordionTrigger>
+                                        <AccordionContent>
+                                            <div className="rounded-md border bg-background">
+                                                {
+                                                    unit.lessons.map((lesson, lessonIndex) => (
+                                                        <div
+                                                            key={lesson.lessonkey}
+                                                            className="flex items-center justify-between cursor-pointer p-4 hover:bg-accent hover:text-accent-foreground"
+                                                            onClick={() => handleLessonClick(lesson)}
+                                                        >
+                                                            <div className="flex items-center gap-3">
+                                                                <Badge variant="outline" className="h-8 w-8 rounded-full shrink-0">
+                                                                    {lessonIndex + 1}
+                                                                </Badge>
+                                                                <span className="text-sm text-black dark:text-white font-medium">{lesson.name}</span>
+                                                            </div>
+                                                        </div>
+                                                    ))
+                                                }
+                                            </div>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                </Accordion>
                             </CardContent>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </Card>
+                        </Card>
+                    </div>
+                </div>
+            </div>
             <SlideInModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}

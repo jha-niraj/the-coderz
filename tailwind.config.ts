@@ -21,7 +21,7 @@ const config = {
 	prefix: "",
 	theme: {
     	container: {
-    		center: true,
+    		center: 'true',
     		padding: '2rem',
     		screens: {
     			'2xl': '1400px'
@@ -198,6 +198,17 @@ const config = {
     				'100%': {
     					transform: 'translateZ(0) rotate(360deg)'
     				}
+    			},
+    			shine: {
+    				'0%': {
+    					'background-position': '0% 0%'
+    				},
+    				'50%': {
+    					'background-position': '100% 100%'
+    				},
+    				to: {
+    					'background-position': '0% 0%'
+    				}
     			}
     		},
     		animation: {
@@ -214,7 +225,8 @@ const config = {
     			'shiny-text': 'shiny-text 8s infinite',
     			rainbow: 'rainbow var(--speed, 2s) infinite linear',
     			'shimmer-slide': 'shimmer-slide var(--speed) ease-in-out infinite alternate',
-    			'spin-around': 'spin-around calc(var(--speed) * 2) infinite linear'
+    			'spin-around': 'spin-around calc(var(--speed) * 2) infinite linear',
+    			shine: 'shine var(--duration) infinite linear'
     		},
     		boxShadow: {
     			input: '`0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28,33,0.08)`'

@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import QuizAndContribute from '../../_components/quizcontribute';
 import UnitAccordion from '../../_components/unitaccordian';
 import PageDescription from '../../_components/pagedesc';
 import { lessonData, units } from '../../data/cpp';
+import BottomCodingQuestion from '../../_components/bottomcoding';
 
 const pageDescription = {
     title: "C++ Learning Path",
@@ -31,7 +31,7 @@ const CppResourcePage = () => {
                         </div>
                     ))
                 }
-                <QuizAndContribute contributelink='#' />
+                <BottomCodingQuestion />
             </div>
         </div>
     );

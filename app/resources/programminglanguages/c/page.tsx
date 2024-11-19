@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import QuizAndContribute from '../../_components/quizcontribute';
 import UnitAccordion from '../../_components/unitaccordian';
 import PageDescription from '../../_components/pagedesc';
 import { lessonData, units } from '../../data/c';
+import BottomCodingQuestion from '../../_components/bottomcoding';
 
 const pageDescription = {
     title: "C Learning Path",
@@ -21,7 +21,7 @@ const CppResourcePage = () => {
     }
 
     return (
-        <div className="min-h-screen overflow-hidden w-full py-32 flex flex-col items-center justify-center p-8">
+        <div className="min-h-screen overflow-hidden w-full py-28 flex flex-col items-center justify-center p-8">
             <div className="w-full max-w-4xl mx-auto">
                 <PageDescription title={pageDescription.title} description={pageDescription.description} onClick={handleEnroll} isEnrolled={isEnrolled} />
                 {
@@ -29,7 +29,7 @@ const CppResourcePage = () => {
                         <UnitAccordion key={index} unit={unit} unitIndex={index} lessonData={lessonData} />
                     ))
                 }
-                <QuizAndContribute contributelink='#' />
+                <BottomCodingQuestion />
             </div>
         </div>
     );

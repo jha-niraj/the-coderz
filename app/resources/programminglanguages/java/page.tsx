@@ -7,6 +7,7 @@ import UnitAccordion from '../../_components/unitaccordian';
 import SmoothScroll from '@/components/smoothscroll';
 import PageDescription from '../../_components/pagedesc';
 import { units } from '../../data/c';
+import BottomCodingQuestion from '../../_components/bottomcoding';
 
 const pageDescription = {
     title: "C Learning Path",
@@ -31,7 +32,7 @@ const CResourcePage = () => {
                         <UnitAccordion key={index} unit={unit} unitIndex={index} />
                     ))
                 } */}
-                <QuizAndContribute contributelink='#' />
+                <BottomCodingQuestion />
             </div>
         </div>
         </SmoothScroll>

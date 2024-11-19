@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import QuizAndContribute from '../../_components/quizcontribute';
 import UnitAccordion from '../../_components/unitaccordian';
 import PageDescription from '../../_components/pagedesc';
+import BottomCodingQuestion from '../../_components/bottomcoding';
 // import { lessonData, units } from '../../data/javascript';
 
 const pageDescription = {
@@ -29,7 +30,7 @@ const JavaScriptResourcePage = () => {
                         <UnitAccordion key={index} unit={unit} unitIndex={index} lessonData={lessonData} />
                     ))
                 } */}
-                <QuizAndContribute contributelink='#' />
+                <BottomCodingQuestion />
             </div>
         </div>
     );

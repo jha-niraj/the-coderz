@@ -7,6 +7,7 @@ import UnitAccordion from '../../_components/unitaccordian';
 import SmoothScroll from '@/components/smoothscroll';
 import PageDescription from '../../_components/pagedesc';
 import { units, lessonData } from '../../data/python';
+import BottomCodingQuestion from '../../_components/bottomcoding';
 
 const pageDescription = {
     title: "Python Learning Path",
@@ -30,7 +31,7 @@ const CResourcePage = () => {
                         <UnitAccordion key={index} unit={unit} lessonData={lessonData} unitIndex={index} />
                     ))
                 }
-                <QuizAndContribute contributelink='#' />
+                <BottomCodingQuestion />
             </div>
         </div>
     );

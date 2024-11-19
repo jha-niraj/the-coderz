@@ -1,5 +1,8 @@
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import ShineBorder from "@/components/ui/shine-border";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface PageDescriptionProps {
     title: string;
@@ -24,36 +27,56 @@ export default function PageDescription({ title, description, onClick, isEnrolle
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="mb-8 text-center text-lg"
+                className="text-center text-lg"
             >
                 {
                     description
                 }
             </motion.p>
-
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="rounded-lg p-6 mb-8 border border-gray-700 dark:bg-gray-900 flex flex-col gap-4"
+                className="grid gap-6 grid-cols-1 md:grid-cols-2 rounded-lg p-6 mb-4"
             >
-                <div className="flex justify-between items-center gap-4">
-                    <h2 className="text-xl font-semibold">Key Highlights</h2>
-                    {/* <Button
-                        onClick={() => onClick()}
-                        className={`px-2 text-md font-semibold text-white rounded-lg transition-all duration-300 ${isEnrolled
-                            ? "bg-green-500 cursor-default"
-                            : "bg-blue-600 hover:bg-blue-700"
-                            }`}
-                    >
-                        {isEnrolled ? "Enrolled" : "Get Started"}
-                    </Button> */}
-                </div>
-                <ul className="list-disc list-inside space-y-2">
-                    <li>Comprehensive coverage from basics to advanced topics</li>
-                    <li>Video tutorials for visual learners</li>
-                    <li>Projects and quiz assessments to track your progress</li>
-                </ul>
+                <ShineBorder
+                    className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl"
+                    color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+                >
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Important Viva Questions for ETP</CardTitle>
+                            <CardDescription>Prepare for your ETP viva with these crucial questions</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <p>Access a curated list of frequently asked viva questions for ETP.</p>
+                        </CardContent>
+                        <CardFooter>
+                            <Button asChild>
+                                <Link href="/etp-viva-questions">View Questions</Link>
+                            </Button>
+                        </CardFooter>
+                    </Card>
+                </ShineBorder>
+                <ShineBorder
+                    className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl"
+                    color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+                >
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Interview Preparation Questions</CardTitle>
+                            <CardDescription>Ace your next interview with our comprehensive question set</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <p>Explore a wide range of interview questions to boost your confidence.</p>
+                        </CardContent>
+                        <CardFooter>
+                            <Button asChild>
+                                <Link href="/interview-prep">Prepare Now</Link>
+                            </Button>
+                        </CardFooter>
+                    </Card>
+                </ShineBorder>
             </motion.div>
         </section>
     )
