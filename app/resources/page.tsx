@@ -367,7 +367,7 @@ export default function ResourcesPage() {
 			<div className="min-h-screen">
 				<main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 pt-32">
 					<AnimatePresence>
-						<div className="relative flex h-[400px] w-full flex-col items-center justify-center overflow-hidden">
+						<div className="relative flex h-[370px] w-full flex-col items-center justify-center overflow-hidden">
 							<h2 className="text-5xl font-extrabold mb-6 shadow-text text-center">Discover Resources</h2>
 							<p className="text-xl text-center dark:text-gray-100 mb-8 max-w-3xl mx-auto shadow-text">
 								Explore our curated collection of learning materials to enhance your skills in programming, web development, and DevOps.
@@ -380,7 +380,7 @@ export default function ResourcesPage() {
 									onChange={(e) => setSearchTerm(e.target.value)}
 									className="w-full text-black dark:text-white border-gray-500 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-full py-3 px-6 pr-12 shadow-inner"
 								/>
-								<Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-300 dark:text-gray-100" />
+								<Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-600 dark:text-gray-100" />
 								<BottomGradient />
 							</div>
 							<Ripple />
@@ -388,28 +388,30 @@ export default function ResourcesPage() {
 					</AnimatePresence>
 
 					<AnimatePresence>
-						{filteredCategories.map((category, categoryIndex) => (
-							<motion.section
-								key={category.name}
-								initial={{ opacity: 0, y: 20 }}
-								animate={{ opacity: 1, y: 0 }}
-								exit={{ opacity: 0, y: -20 }}
-								transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-								className="mb-8"
-							>
-								<h2 className="text-3xl font-bold mb-4 flex items-center dark:text-gray-50">
-									<span className="text-4xl mr-3">{category.icon}</span>
-									{category.name}
-								</h2>
-								<div className="w-[90%] sm:w-full mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-									{
-										category.resources.map((resource, index) => (
-											<ResourceCard key={resource.name} resource={resource} />
-										))
-									}
-								</div>
-							</motion.section>
-						))}
+						{
+							filteredCategories.map((category, categoryIndex) => (
+								<motion.section
+									key={category.name}
+									initial={{ opacity: 0, y: 20 }}
+									animate={{ opacity: 1, y: 0 }}
+									exit={{ opacity: 0, y: -20 }}
+									transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
+									className="mb-8"
+								>
+									<h2 className="text-3xl font-bold mb-4 flex items-center dark:text-gray-50">
+										<span className="text-4xl mr-3">{category.icon}</span>
+										{category.name}
+									</h2>
+									<div className="w-[90%] sm:w-full mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+										{
+											category.resources.map((resource, index) => (
+												<ResourceCard key={resource.name} resource={resource} />
+											))
+										}
+									</div>
+								</motion.section>
+							))
+						}
 					</AnimatePresence>
 				</main>
 				<SupportSection />
