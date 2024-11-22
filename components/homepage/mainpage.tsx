@@ -47,7 +47,8 @@ const MainPage = () => {
                         <div className="max-w-2xl mx-auto flex flex-col gap-6 items-center justify-center">
                             <p className="text-lg text-center text-gray-600 dark:text-gray-300">
                                 Join our vibrant community of learners and gain access to a vast library of resources,
-                                expert guidance, and collaborative support. Unlock your full potential and achieve your goals with confidence.
+                                expert guidance, and collaborative support. 
+                                {/* Unlock your full potential and achieve your goals with confidence. */}
                             </p>
 
                             <div className="flex flex-wrap gap-4 justify-center mt-4">

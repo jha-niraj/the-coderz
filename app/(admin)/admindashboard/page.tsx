@@ -1,115 +1,146 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import { Users, BookOpen, MoreHorizontal } from 'lucide-react'
-import Link from 'next/link'
+import { Users2 } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import Image from "next/image";
+import PageTitle from "./_components/pagetitle";
+import AdminPageButton from "./_components/adminpagebutton";
+import UserChartCard from "./_components/userchartcard";
+import Link from "next/link";
+import { getMenteeCount } from "@/actions/admin.action";
+import { User } from "@prisma/client";
+import { useEffect, useState } from "react";
 
-// Mock data (replace with actual data fetching in a real application)
-const users = [
-    { id: 1, name: "Alice Johnson", email: "alice@example.com", coursesEnrolled: 3, createdAt: "2023-01-15" },
-    { id: 2, name: "Bob Smith", email: "bob@example.com", coursesEnrolled: 2, createdAt: "2023-02-20" },
-    { id: 3, name: "Charlie Brown", email: "charlie@example.com", coursesEnrolled: 5, createdAt: "2023-03-10" },
-    { id: 4, name: "Diana Prince", email: "diana@example.com", coursesEnrolled: 1, createdAt: "2023-04-05" },
-    { id: 5, name: "Ethan Hunt", email: "ethan@example.com", coursesEnrolled: 4, createdAt: "2023-05-01" },
-]
+const AdminDashboard = () => {
+    const [menteeCount, setMenteeCount] = useState<number>(0);
+    const [menteeRegistrationData, setMenteeRegistrationData] = useState<any[]>([]);
+    const [mentorRegistrationData, setMentorRegistrationData] = useState<any[]>([]);
+    const [mentorRequests, setMentorRequests] = useState<User[]>([]);
 
-export default function AdminDashboard() {
-    const [searchTerm, setSearchTerm] = useState('')
+    useEffect(() => {
+        const fetchData = async () => {
+            const menteeCountData = await getMenteeCount();
+            // const menteeRegistrationData = await getMenteeRegistrations();
+            // const mentorRegistrationData = await getMentorRegistrations();
+            // const mentorRequestsData = await getMentorRequests();
 
-    const filteredUsers = users.filter(user =>
-        user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.email.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+            setMenteeCount(menteeCountData);
+            setMenteeRegistrationData(menteeRegistrationData);
+            setMentorRegistrationData(mentorRegistrationData);
+            // setMentorRequests(mentorRequestsData);
+        };
+
+        fetchData();
+    }, []);
 
     return (
-        <div className="min-h-screen p-8">
-            <header className="mb-8">
-                <h1 className="text-4xl font-bold text-gray-800">Admin Dashboard</h1>
-            </header>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Total Users</CardTitle>
-                        <Users className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">{users.length}</div>
-                        <p className="text-xs text-muted-foreground">+2% from last month</p>
-                    </CardContent>
-                </Card>
-                <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Available Courses</CardTitle>
-                        <BookOpen className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">15</div>
-                        <p className="text-xs text-muted-foreground">3 new this month</p>
-                    </CardContent>
-                </Card>
+        <div className="flex flex-col gap-5 h-full p-2 rounded-lg w-full bg-white overflow-hidden">
+            <div className="border-b">
+                <PageTitle title="Dashboard" />
             </div>
-
-            <Card>
-                <CardHeader>
-                    <CardTitle>User Management</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <div className="mb-4">
-                        <Input
-                            placeholder="Search users..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="max-w-sm"
-                        />
+            <section className="flex flex-col lg:flex-row w-full h-full gap-4">
+                <section className="flex w-full lg:w-[70%] h-full flex-col gap-2">
+                    <div className="grid w-full grid-cols-1 gap-4 gap-x-8 transition-all md:grid-cols-2">
+                        <Card>
+                            <CardHeader>
+                                <div className="flex justify-between">
+                                    <CardTitle>Users</CardTitle>
+                                    <Users2 />
+                                </div>
+                            </CardHeader>
+                            <CardContent>
+                                <h1>{menteeCount}</h1>
+                                <CardDescription>
+                                    {/* // make actual percentage */}
+                                    <p>20% more than last week</p>
+                                </CardDescription>
+                            </CardContent>
+                        </Card>
+                        <Card>
+                            <CardHeader>
+                                <div className="flex justify-between">
+                                    <CardTitle>Mentors</CardTitle>
+                                    <Users2 />
+                                </div>
+                            </CardHeader>
+                            <CardContent>
+                                {/* // Make it mentor Count */}
+                                <h1>20</h1>
+                                <CardDescription>
+                                    {/* // make actual percentage */}
+                                    <p>10% more than last week</p>
+                                </CardDescription>
+                            </CardContent>
+                        </Card>
                     </div>
-                    <Table>
-                        <TableCaption>A list of all users.</TableCaption>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead>Name</TableHead>
-                                <TableHead>Email</TableHead>
-                                <TableHead>Courses Enrolled</TableHead>
-                                <TableHead>Created At</TableHead>
-                                <TableHead>Actions</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {filteredUsers.map((user) => (
-                                <TableRow key={user.id}>
-                                    <TableCell className="font-medium">{user.name}</TableCell>
-                                    <TableCell>{user.email}</TableCell>
-                                    <TableCell>{user.coursesEnrolled}</TableCell>
-                                    <TableCell>{user.createdAt}</TableCell>
-                                    <TableCell>
-                                        <DropdownMenu>
-                                            <DropdownMenuTrigger asChild>
-                                                <Button variant="ghost" className="h-8 w-8 p-0">
-                                                    <span className="sr-only">Open menu</span>
-                                                    <MoreHorizontal className="h-4 w-4" />
-                                                </Button>
-                                            </DropdownMenuTrigger>
-                                            <DropdownMenuContent align="end">
-                                                <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                                                <DropdownMenuItem>
-                                                    <Link href={`/admin/users/${user.id}`}>View details</Link>
-                                                </DropdownMenuItem>
-                                                <DropdownMenuSeparator />
-                                                <DropdownMenuItem>Delete user</DropdownMenuItem>
-                                            </DropdownMenuContent>
-                                        </DropdownMenu>
-                                    </TableCell>
-                                </TableRow>
+                    <div className="grid w-full h-full grid-cols-1 sm:grid-cols-1 gap-4 gap-x-8 transition-all md:grid-cols-2">
+                        <UserChartCard data={menteeRegistrationData} />
+                    </div>
+                </section>
+                <Card className="flex flex-col w-full lg:w-[30%] bg-gradient-to-br from-sky-50 to-indigo-100 rounded-xl shadow-lg overflow-hidden">
+                    <div className="p-6 bg-white bg-opacity-70 backdrop-blur-sm">
+                        <h1 className="font-bold text-3xl text-indigo-900 mb-2">
+                            Mentor Requests
+                        </h1>
+                        <AdminPageButton />
+                        <h4 className="text-xl text-center font-medium text-indigo-700">
+                            You have {mentorRequests.length} mentor requests
+                        </h4>
+                    </div>
+                    <div className="space-y-4">
+                        <ScrollArea className="h-[55vh] lg:h-[65vh]">
+                            {mentorRequests.map((user: User, index: number) => (
+                                <Card
+                                    key={index}
+                                    className="bg-white rounded-lg p-4 m-2 shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                                >
+                                    <div className="flex items-center p-4">
+                                        <div className="relative flex-shrink-0">
+                                            <Image
+                                                className="w-20 h-20 rounded-full border-2 border-indigo-200"
+                                                src={user?.image!}
+                                                alt="Mentor Image"
+                                                width={80}
+                                                height={80}
+                                            />
+                                        </div>
+                                        <div className="ml-4 flex-grow">
+                                            <h2 className="font-semibold text-lg text-gray-800">
+                                                {user.name}
+                                            </h2>
+                                            <p className="text-sm text-gray-600 italic">
+                                                {user.tagline}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="bg-gray-50 px-4 py-3 flex justify-between items-center">
+                                        <Badge
+                                            variant="destructive"
+                                            className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium"
+                                        >
+                                            Pending
+                                        </Badge>
+                                        <Link href={`/pendingmentor/${user.id}`}
+                                            className="text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50">
+                                            {/* <Button
+                        variant="outline"
+                        size="sm"
+                      > */}
+                                            View Details
+                                            {/* </Button> */}
+                                        </Link>
+                                    </div>
+                                </Card>
                             ))}
-                        </TableBody>
-                    </Table>
-                </CardContent>
-            </Card>
+                        </ScrollArea>
+                    </div>
+                </Card>
+            </section>
         </div>
-    )
-}
+    );
+};
+
+export default AdminDashboard;
