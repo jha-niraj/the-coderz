@@ -1,146 +1,132 @@
-"use client";
+"use client"
 
-import { Users2 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import Image from "next/image";
-import PageTitle from "./_components/pagetitle";
-import AdminPageButton from "./_components/adminpagebutton";
-import UserChartCard from "./_components/userchartcard";
-import Link from "next/link";
-import { getMenteeCount } from "@/actions/admin.action";
-import { User } from "@prisma/client";
-import { useEffect, useState } from "react";
+import React, { useState } from 'react';
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Users2, LayoutDashboard, Settings, Menu } from 'lucide-react';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import PageTitle from './_components/pagetitle';
+import UsetrChartCard from './_components/userchartcard';
 
-const AdminDashboard = () => {
-    const [menteeCount, setMenteeCount] = useState<number>(0);
-    const [menteeRegistrationData, setMenteeRegistrationData] = useState<any[]>([]);
-    const [mentorRegistrationData, setMentorRegistrationData] = useState<any[]>([]);
-    const [mentorRequests, setMentorRequests] = useState<User[]>([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const menteeCountData = await getMenteeCount();
-            // const menteeRegistrationData = await getMenteeRegistrations();
-            // const mentorRegistrationData = await getMentorRegistrations();
-            // const mentorRequestsData = await getMentorRequests();
-
-            setMenteeCount(menteeCountData);
-            setMenteeRegistrationData(menteeRegistrationData);
-            setMentorRegistrationData(mentorRegistrationData);
-            // setMentorRequests(mentorRequestsData);
-        };
-
-        fetchData();
-    }, []);
+const Sidebar = ({ isExpanded, setIsExpanded } : any) => {
+    const navItems = [
+        { icon: <LayoutDashboard className="h-5 w-5" />, label: 'Dashboard', href: '/admin' },
+        { icon: <Users2 className="h-5 w-5" />, label: 'Users', href: '/admin/users' },
+        { icon: <Settings className="h-5 w-5" />, label: 'Settings', href: '/admin/settings' },
+    ];
 
     return (
-        <div className="flex flex-col gap-5 h-full p-2 rounded-lg w-full bg-white overflow-hidden">
-            <div className="border-b">
-                <PageTitle title="Dashboard" />
+        <aside
+            className={`fixed left-0 top-0 h-full bg-white border-r shadow-sm transform-gpu
+        ${isExpanded ? 'w-64' : 'w-16'} 
+        transition-[width] duration-300 ease-in-out z-50`}
+            onMouseEnter={() => setIsExpanded(true)}
+            onMouseLeave={() => setIsExpanded(false)}
+        >
+            <div className="flex items-center h-16 px-4 border-b">
+                <div className="flex items-center overflow-hidden whitespace-nowrap">
+                    <Menu className="h-6 w-6 min-w-[24px]" />
+                    <span className={`ml-2 font-bold text-xl transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0'
+                        }`}>
+                        Admin Panel
+                    </span>
+                </div>
             </div>
-            <section className="flex flex-col lg:flex-row w-full h-full gap-4">
-                <section className="flex w-full lg:w-[70%] h-full flex-col gap-2">
-                    <div className="grid w-full grid-cols-1 gap-4 gap-x-8 transition-all md:grid-cols-2">
-                        <Card>
-                            <CardHeader>
-                                <div className="flex justify-between">
-                                    <CardTitle>Users</CardTitle>
-                                    <Users2 />
-                                </div>
-                            </CardHeader>
-                            <CardContent>
-                                <h1>{menteeCount}</h1>
-                                <CardDescription>
-                                    {/* // make actual percentage */}
-                                    <p>20% more than last week</p>
-                                </CardDescription>
-                            </CardContent>
-                        </Card>
-                        <Card>
-                            <CardHeader>
-                                <div className="flex justify-between">
-                                    <CardTitle>Mentors</CardTitle>
-                                    <Users2 />
-                                </div>
-                            </CardHeader>
-                            <CardContent>
-                                {/* // Make it mentor Count */}
-                                <h1>20</h1>
-                                <CardDescription>
-                                    {/* // make actual percentage */}
-                                    <p>10% more than last week</p>
-                                </CardDescription>
-                            </CardContent>
-                        </Card>
+            <nav className="p-2 flex flex-col gap-1">
+                {navItems.map((item, index) => (
+                    <Button
+                        key={index}
+                        variant="ghost"
+                        className={`w-full justify-start transition-all duration-300 ease-in-out
+              ${isExpanded ? 'px-4' : 'px-2'}`}
+                    >
+                        <span className="min-w-[20px]">{item.icon}</span>
+                        <span className={`ml-2 transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0 w-0'
+                            }`}>
+                            {item.label}
+                        </span>
+                    </Button>
+                ))}
+            </nav>
+        </aside>
+    );
+};
+
+const Dashboard = () => {
+    const [ isSidebarExpanded, setIsSidebarExpanded ] = useState(false);
+
+    return (
+        <div className="min-h-screen bg-gray-50">
+            <Sidebar isExpanded={isSidebarExpanded} setIsExpanded={setIsSidebarExpanded} />
+
+            <main className={`transition-[margin] duration-300 ease-in-out ${isSidebarExpanded ? 'ml-64' : 'ml-16'
+                }`}>
+                <div className="flex flex-col gap-5 h-full p-6 rounded-lg">
+                    <div className="border-b">
+                        <PageTitle title="Dashboard" />
                     </div>
-                    <div className="grid w-full h-full grid-cols-1 sm:grid-cols-1 gap-4 gap-x-8 transition-all md:grid-cols-2">
-                        <UserChartCard data={menteeRegistrationData} />
-                    </div>
-                </section>
-                <Card className="flex flex-col w-full lg:w-[30%] bg-gradient-to-br from-sky-50 to-indigo-100 rounded-xl shadow-lg overflow-hidden">
-                    <div className="p-6 bg-white bg-opacity-70 backdrop-blur-sm">
-                        <h1 className="font-bold text-3xl text-indigo-900 mb-2">
-                            Mentor Requests
-                        </h1>
-                        <AdminPageButton />
-                        <h4 className="text-xl text-center font-medium text-indigo-700">
-                            You have {mentorRequests.length} mentor requests
-                        </h4>
-                    </div>
-                    <div className="space-y-4">
-                        <ScrollArea className="h-[55vh] lg:h-[65vh]">
-                            {mentorRequests.map((user: User, index: number) => (
-                                <Card
-                                    key={index}
-                                    className="bg-white rounded-lg p-4 m-2 shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
-                                >
-                                    <div className="flex items-center p-4">
-                                        <div className="relative flex-shrink-0">
-                                            <Image
-                                                className="w-20 h-20 rounded-full border-2 border-indigo-200"
-                                                src={user?.image!}
-                                                alt="Mentor Image"
-                                                width={80}
-                                                height={80}
-                                            />
+
+                    <section className="flex flex-col lg:flex-row w-full h-full gap-4">
+                        <section className="flex w-full lg:w-[70%] h-full flex-col gap-4">
+                            <div className="grid w-full grid-cols-1 gap-4 gap-x-8 transition-all md:grid-cols-2">
+                                <Card>
+                                    <CardHeader>
+                                        <div className="flex justify-between">
+                                            <CardTitle>Users</CardTitle>
+                                            <Users2 className="h-5 w-5 text-gray-500" />
                                         </div>
-                                        <div className="ml-4 flex-grow">
-                                            <h2 className="font-semibold text-lg text-gray-800">
-                                                {user.name}
-                                            </h2>
-                                            <p className="text-sm text-gray-600 italic">
-                                                {user.tagline}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className="bg-gray-50 px-4 py-3 flex justify-between items-center">
-                                        <Badge
-                                            variant="destructive"
-                                            className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium"
-                                        >
-                                            Pending
-                                        </Badge>
-                                        <Link href={`/pendingmentor/${user.id}`}
-                                            className="text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50">
-                                            {/* <Button
-                        variant="outline"
-                        size="sm"
-                      > */}
-                                            View Details
-                                            {/* </Button> */}
-                                        </Link>
-                                    </div>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <h1 className="text-3xl font-bold">30</h1>
+                                        <CardDescription>
+                                            <p className="text-green-600">20% more than last week</p>
+                                        </CardDescription>
+                                    </CardContent>
                                 </Card>
-                            ))}
-                        </ScrollArea>
-                    </div>
-                </Card>
-            </section>
+
+                                <Card>
+                                    <CardHeader>
+                                        <div className="flex justify-between">
+                                            <CardTitle>Mentors</CardTitle>
+                                            <Users2 className="h-5 w-5 text-gray-500" />
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <h1 className="text-3xl font-bold">20</h1>
+                                        <CardDescription>
+                                            <p className="text-green-600">10% more than last week</p>
+                                        </CardDescription>
+                                    </CardContent>
+                                </Card>
+                            </div>
+
+                            <div className="grid w-full h-full grid-cols-1 gap-4">
+                                <UsetrChartCard data={[
+                                    { date: "2024-11-24", count: 20 },
+                                    { date: "2024-11-25", count: 25 },
+                                    { date: "2024-11-26", count: 30 },
+                                    { date: "2024-11-27", count: 35 }
+                                ]} />
+                            </div>
+                        </section>
+
+                        <section className="w-full lg:w-[30%]">
+                            <Card>
+                                <CardHeader>
+                                    <CardTitle>Recent Activities</CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="space-y-4">
+                                        <p className="text-gray-500">No recent activities</p>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </section>
+                    </section>
+                </div>
+            </main>
         </div>
     );
 };
 
-export default AdminDashboard;
+export default Dashboard;

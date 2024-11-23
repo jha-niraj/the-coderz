@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    runtime: "edge",
+    experimental: {
+        isrMemoryCacheSize: 0,  // Disable ISR cache
+        serverActions: true,    // Enable if using server actions
+    },
     images: {
-        domains: ['images.unsplash.com', "avatar.vercel.sh", "aceternity.com", 'avatars.githubusercontent.com', 'picsum.photos', 'lh3.googleusercontent.com', 'tse4.mm.bing.net', 'source.unsplash.com', 'assets.aceternity.com'],
+        unoptimized: true
     },
     webpack: (config, { isServer }) => {
         config.module.rules.push({

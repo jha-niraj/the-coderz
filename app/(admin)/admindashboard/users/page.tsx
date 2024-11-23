@@ -1,6 +1,6 @@
 import PageTitle from "@/app/(admin)/admindashboard/_components/pagetitle";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { getMenteeDetails } from "@/actions/admin.actions";
+// import { getMenteeDetails } from "@/actions/admin.actions";
 import MenteeDropdownColumn from "../_components/userdropdown";
 
 interface MenteeProps {
@@ -10,8 +10,8 @@ interface MenteeProps {
 }
 
 const MenteePage = async () => {
-    const users = await getMenteeDetails("MENTEE");
-    console.log(users);
+    // const users = await getMenteeDetails("MENTEE");
+    // console.log(users);
     return (
         <div className="flex flex-col h-screen bg-gray-100">
             <div className="flex-grow overflow-hidden">
@@ -39,7 +39,7 @@ const MenteePage = async () => {
                                         <TableHead className="w-[100px]"></TableHead>
                                     </TableRow>
                                 </TableHeader>
-                                <TableBody>
+                                {/* <TableBody>
                                     {
                                     users && users.length > 0 && users.map((user: any, index: any) => (
                                         <TableRow key={index}>
@@ -53,7 +53,7 @@ const MenteePage = async () => {
                                         </TableRow>
                                     ))
                                     }
-                                </TableBody>
+                                </TableBody> */}
                             </Table>
                         </div>
                     </div>
