@@ -13,6 +13,8 @@ export const categories = [
     "Python"
 ]
 
+const name = "Niraj Jha";
+
 export const realProjects = [
     {
         id: "html-1",
