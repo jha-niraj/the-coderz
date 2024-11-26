@@ -14,79 +14,94 @@ datasource db {
 }
 
 model User {
-	id					String 			@id 		@default(uuid())
-	name				String?			
-	email				String			@unique
-	emailVerified		Boolean?					@default(false)
-	hashedPassword		String?		
-	image             	String?           			@default("https://tse4.mm.bing.net/th?id=OIP.-BS8Y2nH1k93GJiitUVBCAHaHa&pid=Api&P=0")
-	gender				String?
-	phone				String?
-	yearofbirth			String?
-	aboutme				String?
-	tagline				String?
-	college				String?
-	location			String?
-	github				String?
-	linkedin			String?
-	twitter				String?
-	leetcode			String?
-	website				String?
-	interests			String[]
-	skills				String[]
-	verifyToken       	String?
-  	verifyTokenExpiry 	DateTime?
-	resetToken			String?
-	restTokenExpiry		DateTime?
-	createdAt			DateTime		@default(now())
-	isAdmin				Boolean			@default(false)
+    id                	String    @id @default(uuid())
+    name              	String?
+    email             	String    @unique
+    emailVerified     	Boolean?  @default(false)
+    hashedPassword    	String?
+    image             	String?   @default("https://tse4.mm.bing.net/th?id=OIP.-BS8Y2nH1k93GJiitUVBCAHaHa&pid=Api&P=0")
+    gender            	String?
+    phone             	String?
+    yearofbirth       	String?
+    aboutme           	String?
+    tagline           	String?
+    college           	String?
+    location          	String?
+    github            	String?
+    linkedin          	String?
+    twitter           	String?
+    leetcode          	String?
+    website           	String?
+    interests         	String[]
+    skills            	String[]
+    verifyToken       	String?
+    verifyTokenExpiry 	DateTime?
+    resetToken        	String?
+    restTokenExpiry   	DateTime?
+    createdAt         	DateTime  @default(now())
+    isAdmin           	Boolean   @default(false)
 
-	proofofwork			ProofOfWork[]
-	accounts			Account[]
+	projects			Projects[]
+    proofofwork 		ProofOfWork[]
+    accounts    		Account[]
 }
 
 model Account {
-	id 					String	@id @default(uuid())
-	userId				String
-	type				String
-	provider			String
-	providerAccountId	String
-	refresh_token		String?
-	access_token		String?
-	expires_at			Int?
-	token_type			String?
-	scope				String?
-	id_token			String?
-	session_state		String?
+    id                String  @id @default(uuid())
+    userId            String
+    type              String
+    provider          String
+    providerAccountId String
+    refresh_token     String?
+    access_token      String?
+    expires_at        Int?
+    token_type        String?
+    scope             String?
+    id_token          String?
+    session_state     String?
 
-	createdAt			DateTime	@default(now())
-	updatedAt			DateTime	@updatedAt
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
-	user				User 		@relation(fields: [userId], references: [id], onDelete: Cascade)
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-	@@unique([provider, providerAccountId])
-	@@map("accounts")
+    @@unique([provider, providerAccountId])
+    @@map("accounts")
 }
 
+model Projects {
+	id 				String 	 @id	@default(uuid())
+	userId			String
+	projectId		String
+	githubUrl		String?
+	liveUrl			String?
+	isSubmitted		Boolean			@default(false)
+	isApproved		Boolean			@default(false)
+	submissionDate	DateTime?
+	createdAt		DateTime		@default(now())
+	updatedAt		DateTime		@updatedAt
+
+	user			User			@relation(fields: [userId], references: [id])
+}
 model ProofOfWork {
-  id          String    @id @default(uuid())
-  description String
-  skills      String[]
-  link        String
-  userId      String
-  user        User      @relation(fields: [userId], references: [id])
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+    id          String   @id	@default(uuid())
+    description String
+    skills      String[]
+    link        String
+    userId      String
+    user        User     @relation(fields: [userId], references: [id])
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
 }
 
 model ContactSubmission {
-  id        	String   	@id @default(cuid())
-  name      	String
-  skill   		String
-  yearofstudy	String
-  email     	String
-  details   	String?
-  createdAt 	DateTime 	@default(now())
+    id          String   @id @default(cuid())
+    name        String
+    skill       String
+    yearofstudy String
+    email       String
+    details     String?
+    createdAt   DateTime @default(now())
 
-  @@map("contact_submissions")
+    @@map("contact_submissions")
 }

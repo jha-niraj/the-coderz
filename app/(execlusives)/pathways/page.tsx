@@ -86,7 +86,6 @@ interface PathwayProps {
         description: string;
     }[]
 }
-
 export default function Component() {
     const [selectedPathway, setSelectedPathway] = useState<PathwayProps | null>(null);
     const { data: session, status } = useSession();

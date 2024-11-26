@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { categories, realProjects } from './projectsdata/project';
+import { categories, projectData } from './projectsdata/projectData';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -19,25 +19,10 @@ import { useRouter } from 'next/navigation';
 import { RainbowButton } from '@/components/ui/rainbow-button';
 import Link from 'next/link';
 import projectMainImage from "./a_group_of_college_students_including_3.jpeg";
+import ShimmerButton from '@/components/ui/shimmer-button';
+import axios from 'axios';
 
 type DifficultyLevel = "All" | "Beginner" | "Intermediate" | "Advanced";
-
-interface Resource {
-    documentation: string[];
-    tools: string[];
-}
-
-interface ProjectGuide {
-    description: string;
-    desktopImage?: string;
-    mobileImage?: string;
-    learningOutcomes: string[];
-    keyFeatures: string[];
-    prerequisites: string[];
-    skillsGained: string[];
-    steps: string[];
-    resources: Resource;
-}
 
 interface Project {
     id: string;
@@ -45,11 +30,24 @@ interface Project {
     description: string;
     difficulty: DifficultyLevel;
     tags: string[];
-    guide: ProjectGuide;
+    techStack: string[];
+    requirements: string[];
+    expectedOutput: string;
+    learningBenefits: string[];
+    evaluationCriteria: string[];
+    extensions: string[];
+    prerequisites: string[];
+    resources: {
+        name: string;
+        link: string;
+    }[];
+    approvalCriteria: string[];
+    image: string | null;
+    category: string;
 }
 
 // Type assertion for your realProjects data
-const typedProjects = realProjects as Project[];
+// const typedProjects = projectData as Project[];
 
 const difficultyLevel: DifficultyLevel[] = ["All", "Beginner", "Intermediate", "Advanced"];
 
@@ -57,17 +55,18 @@ const ProjectsPage: React.FC = () => {
     const [activeCategory, setActiveCategory] = useState<string>('All');
     const [selectedLevel, setSelectedLevel] = useState<DifficultyLevel>("All");
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+    const [ startingProject, setStartingProject ] = useState<Boolean>(false);
     const { toast } = useToast();
     const { data: session, status } = useSession();
     const router = useRouter();
 
-    useEffect(() => {
-        if (!session?.user) {
-            router.push("/signin");
-        }
-    }, [session, router])
+    // useEffect(() => {
+    //     if (!session?.user) {
+    //         router.push("/signin");
+    //     }
+    // }, [session, router])
 
-    const filteredProjects = typedProjects.filter((project) => {
+    const filteredProjects = projectData.filter((project) => {
         const categoryMatch = activeCategory === 'All' || project.tags.includes(activeCategory);
         const difficultyMatch = selectedLevel === 'All' || project.difficulty === selectedLevel;
         return categoryMatch && difficultyMatch;
@@ -79,6 +78,37 @@ const ProjectsPage: React.FC = () => {
             description: "We are working on this features which enables you to learn at you own pace while following simple and understanding instructions.",
             variant: "default"
         });
+    }
+    const handleProjectStart = async(id: string) => {
+        console.log("Id of the Project: " + id);
+        setStartingProject(true);
+
+        try {
+            const response = await axios.post("/api/projectstart", { id }, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            console.log(response.data.data);
+            if(response.status === 201 || response.status === 200) {
+                toast({
+                    title: "Successfully Started a Project",
+                    description: "Please complete the project with less amount of time and do everything that is listed to get high grades"
+                })
+            }
+        } catch(err: any) {
+            if (axios.isAxiosError(err)) {
+				toast({
+					title: err.response?.data?.err || 'Failed to Start a Project. Please try again after some time.',
+				});
+			} else {
+				toast({
+					title: 'Failed to Start a Project. Please try again after some time.',
+				});
+			}
+        } finally {
+            setStartingProject(false);
+        }
     }
 
     return (
@@ -131,10 +161,12 @@ const ProjectsPage: React.FC = () => {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             <div className="flex flex-col items-center p-6 border rounded-lg shadow-sm">
                                 <div className="text-purple-600 mb-4">
-                                    <Image 
-                                        className='w-20' 
-                                        src="https://media.istockphoto.com/id/1396933001/vector/vector-blue-verified-badge.jpg?s=612x612&w=0&k=20&c=aBJ2JAzbOfQpv2OCSr0k8kYe0XHutOGBAJuVjvWvPrQ=" 
-                                        alt="" 
+                                    <Image
+                                        className='w-20'
+                                        src="https://media.istockphoto.com/id/1396933001/vector/vector-blue-verified-badge.jpg?s=612x612&w=0&k=20&c=aBJ2JAzbOfQpv2OCSr0k8kYe0XHutOGBAJuVjvWvPrQ="
+                                        alt=""
+                                        width={100}
+                                        height={100}
                                     />
                                 </div>
                                 <h3 className="text-xl font-semibold mb-2">Become job ready</h3>
@@ -144,10 +176,12 @@ const ProjectsPage: React.FC = () => {
                             </div>
                             <div className="flex flex-col items-center p-6 border rounded-lg shadow-sm">
                                 <div className="text-green-600 mb-4">
-                                    <Image 
-                                        className='w-16' 
-                                        src="https://cdn-icons-png.flaticon.com/512/751/751355.png" 
-                                        alt="" 
+                                    <Image
+                                        className='w-16'
+                                        src="https://cdn-icons-png.flaticon.com/512/751/751355.png"
+                                        alt=""
+                                        width={100}
+                                        height={100}
                                     />
                                 </div>
                                 <h3 className="text-xl font-semibold mb-2">Learn by doing</h3>
@@ -157,10 +191,12 @@ const ProjectsPage: React.FC = () => {
                             </div>
                             <div className="flex flex-col items-center p-6 border rounded-lg shadow-sm" id="project_section">
                                 <div className="text-yellow-600 mb-4">
-                                    <Image 
-                                        className='w-20' 
-                                        src="https://cdn-icons-png.flaticon.com/512/6165/6165577.png" 
-                                        alt="" 
+                                    <Image
+                                        className='w-20'
+                                        src="https://cdn-icons-png.flaticon.com/512/6165/6165577.png"
+                                        alt=""
+                                        width={100}
+                                        height={100}
                                     />
                                 </div>
                                 <h3 className="text-xl font-semibold mb-2">Get feedback</h3>
@@ -248,7 +284,6 @@ const ProjectsPage: React.FC = () => {
                                                                 </Badge>
                                                             </CardItem>
                                                         </div>
-
                                                         <CardItem
                                                             as="p"
                                                             translateZ="60"
@@ -256,15 +291,16 @@ const ProjectsPage: React.FC = () => {
                                                         >
                                                             {project.description}
                                                         </CardItem>
-
                                                         <CardItem
                                                             translateZ="60"
                                                             as="div"
                                                             className="flex flex-wrap gap-2 mb-6"
                                                         >
-                                                            {project.tags.map((tag: string) => (
-                                                                <Badge key={tag} variant="outline">{tag}</Badge>
-                                                            ))}
+                                                            {
+                                                                project.techStack.map((stack: string) => (
+                                                                    <Badge key={stack} variant="outline">{stack}</Badge>
+                                                                ))
+                                                            }
                                                         </CardItem>
                                                     </div>
                                                     <CardItem
@@ -295,78 +331,163 @@ const ProjectsPage: React.FC = () => {
 
                 <Sheet open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
                     <SheetContent className="w-full md:max-w-[640px] overflow-y-auto">
-                        {selectedProject && (
-                            <div className="space-y-8">
-                                <SheetHeader>
-                                    <SheetTitle>{selectedProject.title}</SheetTitle>
-                                    <p className="text-black dark:text-gray-200">{selectedProject.guide.description}</p>
-                                </SheetHeader>
-
-                                <div className="space-y-6">
-                                    {selectedProject.guide.desktopImage && selectedProject.guide.mobileImage && (
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <div className="space-y-3">
-                                                <div className="flex items-center gap-2 text-sm font-medium text-black dark:text-gray-200">
-                                                    <Monitor className="w-4 h-4" />
-                                                    <span>Desktop Preview</span>
-                                                </div>
-                                                <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
-                                                    <Image
-                                                        src={selectedProject.guide.desktopImage}
-                                                        alt="Desktop preview"
-                                                        className="w-full h-full object-cover"
-                                                        height={200}
-                                                        width={200}
-                                                    />
-                                                </div>
-                                            </div>
-
-                                            <div className="space-y-3">
-                                                <div className="flex items-center gap-2 text-sm font-medium text-black dark:text-gray-200">
-                                                    <Smartphone className="w-4 h-4" />
-                                                    <span>Mobile Preview</span>
-                                                </div>
-                                                <div className="aspect-[9/16] bg-gray-100 rounded-lg overflow-hidden max-w-[240px] mx-auto">
-                                                    <Image
-                                                        src={selectedProject.guide.mobileImage}
-                                                        alt="Mobile preview"
-                                                        className="w-full h-full object-cover"
-                                                        height={200}
-                                                        width={200}
-                                                    />
-                                                </div>
+                        {
+                            selectedProject && (
+                                <div className="space-y-8">
+                                    <SheetHeader>
+                                        <h2 className="text-2xl font-semibold text-gray-800">{selectedProject.title}</h2>
+                                    </SheetHeader>
+                                    <p className="text-gray-600 mb-4">{selectedProject.description}</p>
+                                    <div className="flex w-full justify-between mb-6">
+                                        <div className="flex flex-col gap-2">
+                                            <h3 className="font-semibold text-gray-800">Tags</h3>
+                                            <div className="flex gap-2">
+                                                {
+                                                    selectedProject.tags.map((tag, index) => (
+                                                        <span key={index} className="px-3 py-1 bg-gray-200 rounded-full text-sm text-gray-800">
+                                                            {tag}
+                                                        </span>
+                                                    ))
+                                                }
                                             </div>
                                         </div>
-                                    )}
-                                </div>
-
-                                <div className="space-y-6">
-                                    <div>
-                                        <h3 className="text-lg font-semibold mb-3">Technologies Used</h3>
-                                        <div className="flex flex-wrap gap-2">
-                                            {selectedProject.tags.map((tag: string) => (
-                                                <Badge key={tag} variant="secondary">
-                                                    {tag}
-                                                </Badge>
-                                            ))}
+                                        <div className="flex flex-col gap-2">
+                                            <h3 className="font-semibold text-gray-800">Tech Stack</h3>
+                                            <div className="flex gap-2">
+                                                {
+                                                    selectedProject.techStack.map((tech, index) => (
+                                                        <span key={index} className="px-3 py-1 bg-gray-200 rounded-full text-sm text-gray-800">
+                                                            {tech}
+                                                        </span>
+                                                    ))
+                                                }
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <Separator className="my-6" />
-
-                                    <div>
-                                        <h3 className="text-lg font-semibold mb-3">Learning Outcomes</h3>
-                                        <ul className="list-disc pl-6 space-y-1">
-                                            {selectedProject.guide.learningOutcomes.map((outcome) => (
-                                                <li key={outcome} className="text-gray-600 dark:text-gray-300">
-                                                    {outcome}
-                                                </li>
-                                            ))}
+                                    {
+                                        selectedProject.image && (
+                                            <div className="space-y-4 mb-6">
+                                                <h3 className="font-semibold text-gray-800">Reference Image</h3>
+                                                {
+                                                    <div>
+                                                        <Image
+                                                            src={selectedProject.image}
+                                                            alt="Selected Project Image"
+                                                            width={400}
+                                                            height={400}
+                                                            className=""
+                                                        />
+                                                    </div>
+                                                }
+                                            </div>
+                                        )
+                                    }
+                                    <div className="space-y-4 mb-6">
+                                        <h3 className="font-semibold text-gray-800">Requirements</h3>
+                                        <ul className="list-disc pl-5 space-y-2 text-gray-600">
+                                            {
+                                                selectedProject.requirements.map((req, index) => (
+                                                    <li key={index}>{req}</li>
+                                                ))
+                                            }
                                         </ul>
                                     </div>
+                                    <div className="space-y-4 mb-6">
+                                        <h3 className="font-semibold text-gray-800">Expected Output</h3>
+                                        <p className="text-gray-600">{selectedProject.expectedOutput}</p>
+                                    </div>
+                                    <div className="space-y-4 mb-6">
+                                        <h3 className="font-semibold text-gray-800">Learning Benefits</h3>
+                                        <ul className="list-disc pl-5 space-y-2 text-gray-600">
+                                            {
+                                                selectedProject.learningBenefits.map((benefit, index) => (
+                                                    <li key={index}>{benefit}</li>
+                                                ))
+                                            }
+                                        </ul>
+                                    </div>
+                                    <div className="space-y-4 mb-6">
+                                        <h3 className="font-semibold text-gray-800">Evaluation Criteria</h3>
+                                        <ul className="list-disc pl-5 space-y-2 text-gray-600">
+                                            {
+                                                selectedProject.evaluationCriteria.map((criteria, index) => (
+                                                    <li key={index}>{criteria}</li>
+                                                ))
+                                            }
+                                        </ul>
+                                    </div>
+                                    <div className="space-y-4 mb-6">
+                                        <h3 className="font-semibold text-gray-800">Extensions</h3>
+                                        <ul className="list-disc pl-5 space-y-2 text-gray-600">
+                                            {
+                                                selectedProject.extensions.map((extension, index) => (
+                                                    <li key={index}>{extension}</li>
+                                                ))
+                                            }
+                                        </ul>
+                                    </div>
+                                    <div className="space-y-4 mb-6">
+                                        <h3 className="font-semibold text-gray-800">Prerequisites</h3>
+                                        <ul className="list-disc pl-5 space-y-2 text-gray-600">
+                                            {
+                                                selectedProject.prerequisites.map((prerequisite, index) => (
+                                                    <li key={index}>{prerequisite}</li>
+                                                ))
+                                            }
+                                        </ul>
+                                    </div>
+                                    <div className="space-y-4 mb-6">
+                                        <h3 className="font-semibold text-gray-800">Approval Criteria</h3>
+                                        <ul className="list-disc pl-5 space-y-2 text-gray-600">
+                                            {
+                                                selectedProject.approvalCriteria.map((criteria, index) => (
+                                                    <li key={index}>{criteria}</li>
+                                                ))
+                                            }
+                                        </ul>
+                                    </div>
+                                    <div className="space-y-4 mb-6">
+                                        <h3 className="font-semibold text-gray-800">Resources</h3>
+                                        <ul className="text-gray-600 grid grid-cols-1 sm:grid-cols-2">
+                                            {
+                                                selectedProject.resources.map((resource, index) => (
+                                                    <li key={index} className="">
+                                                        <Link href={resource.link} className="text-blue-600 underline hover:border-2 hover:border-black p-2 hover:rounded-lg transition-all duration-300" target="_blank" rel="noopener noreferrer">
+                                                            {resource.name}
+                                                        </Link>
+                                                    </li>
+                                                ))
+                                            }
+                                        </ul>
+                                    </div>
+                                    {/* {
+                                    selectedProject.certificateLevel && (
+                                        <div className="mt-6">
+                                            <h3 className="font-semibold text-gray-800">Certificate Level</h3>
+                                            <p className="text-gray-600">{selectedProject.certificateLevel}</p>
+                                        </div>
+                                    )
+                                    } */}
+                                    <div className="flex w-full gap-4 flex-col md:flex-row items-center justify-between">
+                                        <Link
+                                            target='_blank'
+                                            href="https://discord.gg/chF78trF"
+                                            className="w-full"
+                                        >
+                                            <RainbowButton>Join Discord</RainbowButton>
+                                        </Link>
+                                        <ShimmerButton 
+                                            className="w-full"
+                                            onClick={() => handleProjectStart(selectedProject?.id)}
+                                        >
+                                            {
+                                                startingProject ? "Starting Project" : "Start Building"
+                                            }
+                                        </ShimmerButton>
+                                    </div>
                                 </div>
-                            </div>
-                        )}
+                            )
+                        }
                     </SheetContent>
                 </Sheet>
             </div>
