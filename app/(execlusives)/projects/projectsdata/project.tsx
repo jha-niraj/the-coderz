@@ -17,7 +17,7 @@ const name = "Niraj Jha";
 
 export const realProjects = [
     {
-        id: "html-1",
+        id: "1",
         title: "Personal Blog Structure",
         description: "Create a multi-page blog structure focusing on semantic HTML elements",
         difficulty: "Beginner",
@@ -57,7 +57,7 @@ export const realProjects = [
         }
     },
     {
-        id: "html-2",
+        id: "2",
         title: "Restaurant Menu System",
         description: "Build a structured menu system for a restaurant with multiple sections",
         difficulty: "Beginner",
@@ -93,7 +93,7 @@ export const realProjects = [
         }
     },
     {
-        id: "html-3",
+        id: "3",
         title: "Educational Course Catalog",
         description: "Develop a course catalog structure with detailed course information",
         difficulty: "Intermediate",
