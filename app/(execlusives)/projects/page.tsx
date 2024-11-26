@@ -210,7 +210,6 @@ const ProjectsPage: React.FC = () => {
                             </DropdownMenuContent>
                         </DropdownMenu>
                     </div>
-
                     <div className="mb-10">
                         <div className="grid grid-cols-1 md:grid-cols-2 mx-auto w-full lg:grid-cols-3 gap-6 min-h-[300px]">
                             {
