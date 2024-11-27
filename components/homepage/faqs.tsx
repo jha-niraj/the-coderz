@@ -75,16 +75,18 @@ const FaqsAccrodian = () => {
                 </div>
                 <div className="w-full lg:w-2/3">
                     <Accordion type="multiple" className="gap-3 rounded-lg flex flex-col">
-                        {faqData.map((faq) => (
-                            <AccordionItem key={faq.id} value={faq.id} className="rounded-lg">
-                                <AccordionTrigger className="text-left px-6">
-                                    {faq.question}
-                                </AccordionTrigger>
-                                <AccordionContent className="px-6">
-                                    {faq.answer}
-                                </AccordionContent>
-                            </AccordionItem>
-                        ))}
+                        {
+                            faqData.map((faq) => (
+                                <AccordionItem key={faq.id} value={faq.id} className="rounded-lg">
+                                    <AccordionTrigger className="text-left px-6">
+                                        {faq.question}
+                                    </AccordionTrigger>
+                                    <AccordionContent className="px-6">
+                                        {faq.answer}
+                                    </AccordionContent>
+                                </AccordionItem>
+                            ))
+                        }
                     </Accordion>
                 </div>
             </div>

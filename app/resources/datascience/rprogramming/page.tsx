@@ -2,11 +2,10 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import QuizAndContribute from '../../_components/quizcontribute';
 import UnitAccordion from '../../_components/unitaccordian';
 import PageDescription from '../../_components/pagedesc';
+import { lessonData, units } from '../../data/cpp';
 import BottomCodingQuestion from '../../_components/bottomcoding';
-// import { lessonData, units } from '../../data/javascript';
 import ShineBorder from '@/components/ui/shine-border';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -15,18 +14,18 @@ import { QuestionProps, SubjectProps } from '@/app/types';
 import { toast } from '@/hooks/use-toast';
 
 const pageDescription = {
-    title: "JavaScript Learning Path",
-    description: "Master JavaScript with our comprehensive course covering everything from basics to advanced topics Perfect for beginners and experienced programmers looking to enhance their skills."
+    title: "R Programming Learning Resources",
+    description: "Master R-Programming with our comprehensive course covering everything from basics to advanced topics Perfect for beginners and experienced programmers looking to enhance their skills."
 }
 const vivaQuestionsDesc = {
-    title: "React Viva Questions",
+    title: "TypeScript Viva Questions",
     description: "Please try to answer the question from your side and then see the answer. For that we have used the Accrodian here."
 }
 const interviewQuestionsDesc = {
-    title: "React Interview Questions",
+    title: "TypeScript Interview Questions",
     description: "Please try to answer the question from your side and then see the answer. For that we have used the Accrodian here."
 }
-const JavaScriptResourcePage = () => {
+const RProgramming = () => {
     const router = useRouter();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [subject, setSubject] = useState<SubjectProps | null>(null);
@@ -102,15 +101,17 @@ const JavaScriptResourcePage = () => {
                         </Card>
                     </ShineBorder>
                 </motion.div>
-                {/* {
+                {
                     units.map((unit, index) => (
-                        <UnitAccordion key={index} unit={unit} unitIndex={index} lessonData={lessonData} />
+                        <div className="" key={index}>
+                            <UnitAccordion unit={unit} unitIndex={index} lessonData={lessonData} />
+                        </div>
                     ))
-                } */}
+                }
                 <BottomCodingQuestion />
             </div>
         </div>
     );
 };
 
-export default JavaScriptResourcePage;
+export default RProgramming;

@@ -15,18 +15,18 @@ import { QuestionProps, SubjectProps } from '@/app/types';
 import { toast } from '@/hooks/use-toast';
 
 const pageDescription = {
-    title: "JavaScript Learning Path",
+    title: "TypeScript Learning Path",
     description: "Master JavaScript with our comprehensive course covering everything from basics to advanced topics Perfect for beginners and experienced programmers looking to enhance their skills."
 }
 const vivaQuestionsDesc = {
-    title: "React Viva Questions",
+    title: "TypeScript Viva Questions",
     description: "Please try to answer the question from your side and then see the answer. For that we have used the Accrodian here."
 }
 const interviewQuestionsDesc = {
-    title: "React Interview Questions",
+    title: "TypeScript Interview Questions",
     description: "Please try to answer the question from your side and then see the answer. For that we have used the Accrodian here."
 }
-const JavaScriptResourcePage = () => {
+const TypeScriptResourcePage = () => {
     const router = useRouter();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [subject, setSubject] = useState<SubjectProps | null>(null);
@@ -113,4 +113,4 @@ const JavaScriptResourcePage = () => {
     );
 };
 
-export default JavaScriptResourcePage;
+export default TypeScriptResourcePage;

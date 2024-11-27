@@ -62,3 +62,16 @@ export interface PathwayDetailsProps {
     pathway: Pathway;
     onBack: () => void;
 }
+
+// Interface and Types for the Viva and Interview Questions:
+export interface SubjectProps {
+    title: string;
+    description: string;
+}
+export interface QuestionProps {
+    id: string;
+    question: string;
+    description: string;
+    points?: string[];
+    code?: string | null;
+}
