@@ -234,6 +234,28 @@ const categories = [
 		]
 	},
 	{
+		name: 'Data Science',
+		icon: '📊',
+		resources: [
+			{
+				name: 'R Programming',
+				url: '/resources/datascience/rprogramming',
+				icon: '🔢',
+				description: 'A statistical programming language designed for data analysis, statistical computing, and graphical visualization.',
+				color: 'from-blue-500 to-blue-300',
+				status: "live"
+			},
+			{
+				name: 'Tableau',
+				url: '/resources/datascience//tableau',
+				icon: '📈',
+				description: 'A powerful data visualization and business intelligence tool that transforms raw data into interactive, easily understandable visual representations.',
+				color: 'from-purple-500 to-purple-300',
+				status: "live"
+			}
+		],
+	},
+	{
 		name: 'DevOps',
 		icon: '🛠️',
 		resources: [
@@ -337,20 +359,6 @@ function ResourceCard({ resource }: any) {
 export default function ResourcesPage() {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [filteredCategories, setFilteredCategories] = useState(categories);
-
-	const [isDarkMode, setIsDarkMode] = useState(false);
-
-	// List of icon slugs to be displayed in the cloud
-	const iconSlugs = [
-		'react', 'javascript', 'typescript', 'html5', 'css3', 'nodejs',
-		'express', 'mongodb', 'postgresql', 'git', 'github', 'vscode',
-		'npm', 'webpack', 'babel', 'sass', 'tailwindcss', 'bootstrap',
-		'jest', 'docker', 'aws', 'firebase', 'redux', 'graphql'
-	];
-
-	const handleThemes = () => {
-		setIsDarkMode(c => !c);
-	}
 
 	useEffect(() => {
 		const filtered = categories.map(category => ({

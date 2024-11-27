@@ -1857,3 +1857,558 @@ echo SITE_NAME;
         ]
     }
 };
+
+export const vivaQuestions = [
+    {
+        question: "1. What is PHP, and why is it widely used?",
+        answer: "PHP (Hypertext Preprocessor) is a server-side scripting language designed for web development. It is widely used because it integrates well with HTML, supports various databases, and allows for dynamic content creation on web pages."
+    },
+    {
+        question: "2. What is XAMPP, and why is it used?",
+        answer: "XAMPP is a free and open-source cross-platform web server solution stack that includes Apache, MySQL, PHP, and Perl. It is used to create a local server environment for PHP and database-based web application development."
+    },
+    {
+        question: "3. Explain the difference between PHP variables and constants.",
+        answer: "PHP variables are containers for storing data that can change during script execution, while constants hold data that cannot be changed once defined. Constants are defined using the `define()` function or the `const` keyword."
+    },
+    {
+        question: "4. What are PHP data types?",
+        answer: "PHP data types include strings, integers, floats, booleans, arrays, objects, NULL, and resources."
+    },
+    {
+        question: "5. What is the significance of the `include()` and `require()` functions in PHP?",
+        answer: "`include()` and `require()` are used to include PHP files into another PHP file. The main difference is that `require()` causes a fatal error if the file is not found, while `include()` only generates a warning."
+    },
+    {
+        question: "6. What are associative arrays in PHP?",
+        answer: "Associative arrays are arrays in PHP where keys are named (strings) instead of numeric indices. They are used to store key-value pairs."
+    },
+    {
+        question: "7. Explain pass-by-value and pass-by-reference in PHP.",
+        answer: "Pass-by-value copies the value of a variable, so changes to the copy do not affect the original variable. Pass-by-reference passes the variable itself, so changes to it affect the original variable. Pass-by-reference is done using an `&` symbol before the variable."
+    },
+    {
+        question: "8. What is the difference between `GET` and `POST` methods in PHP?",
+        answer: "`GET` sends data as URL parameters and is suitable for simple data submission, while `POST` sends data in the request body, making it more secure and capable of handling large amounts of data."
+    },
+    {
+        question: "9. How do you sanitize form inputs in PHP?",
+        answer: "Form inputs can be sanitized using PHP functions like `htmlspecialchars()`, `filter_var()`, or custom validation functions to prevent harmful input like XSS or SQL injection."
+    },
+    {
+        question: "10. What is a PHP session, and how is it different from a cookie?",
+        answer: "A PHP session stores user data on the server, while cookies store data on the client side. Sessions are more secure since data is not exposed to the user, and they expire when the browser is closed unless explicitly set otherwise."
+    },
+    {
+        question: "11. What is the purpose of the `filter_var()` function in PHP?",
+        answer: "`filter_var()` is used to validate and sanitize user inputs, such as checking if an email is valid or filtering input to prevent XSS attacks."
+    },
+    {
+        question: "12. How do you handle file uploads in PHP?",
+        answer: "File uploads are handled using the `$_FILES` superglobal array. The uploaded file is temporarily stored, and you can move it to a desired directory using the `move_uploaded_file()` function."
+    },
+    {
+        question: "13. What is the difference between an abstract class and an interface in PHP?",
+        answer: "An abstract class provides both defined and undefined methods and can have properties, while an interface can only declare methods without implementations and does not allow properties."
+    },
+    {
+        question: "14. What is the purpose of a constructor in a PHP class?",
+        answer: "A constructor is a special method automatically called when an object of the class is created. It is used to initialize object properties."
+    },
+    {
+        question: "15. How do you connect to a MySQL database in PHP?",
+        answer: "You can connect to a MySQL database using `mysqli_connect()` or a PDO object. Both require the hostname, username, password, and database name."
+    },
+    {
+        question: "16. What is the use of `GROUP BY` in SQL?",
+        answer: "`GROUP BY` is used to group rows sharing a property so aggregate functions like `COUNT`, `SUM`, and `AVG` can be applied to each group."
+    },
+    {
+        question: "17. Explain the difference between `TRUNCATE` and `DELETE` in SQL.",
+        answer: "`TRUNCATE` removes all rows from a table without logging individual row deletions, making it faster but irreversible. `DELETE` removes rows based on conditions and logs each row deletion."
+    },
+    {
+        question: "18. What is the purpose of `phpMyAdmin`?",
+        answer: "`phpMyAdmin` is a web-based tool for managing MySQL databases. It provides an interface for creating, modifying, and deleting databases, tables, and records."
+    },
+    {
+        question: "19. What are SQL aggregate functions?",
+        answer: "SQL aggregate functions perform calculations on multiple rows of a column and return a single value. Examples include `AVG`, `COUNT`, `SUM`, `MIN`, and `MAX`."
+    },
+    {
+        question: "20. What is the difference between `Pconnect` and `Connect` in PHP?",
+        answer: "`Pconnect` (persistent connection) keeps the database connection open for future use, improving performance for repeated requests. `Connect` opens and closes the connection with each request."
+    },
+    {
+        question: "21. How do you handle errors in PHP?",
+        answer: "Errors in PHP are handled using functions like `error_reporting()`, custom error handlers with `set_error_handler()`, and `try-catch` blocks for exceptions."
+    },
+    {
+        question: "22. What is the difference between `require_once` and `include_once`?",
+        answer: "`require_once` and `include_once` ensure a file is included only once. The difference lies in error handling: `require_once` causes a fatal error if the file is not found, while `include_once` generates a warning."
+    },
+    {
+        question: "23. What is the purpose of `LIKE` in SQL?",
+        answer: "`LIKE` is used in SQL to search for a specified pattern in a column using wildcard characters like `%` and `_`."
+    },
+    {
+        question: "24. What are the different scopes of variables in PHP?",
+        answer: "PHP variables can have local, global, static, or function parameter scope. Local variables exist within a function, global variables are accessible anywhere using `global` keyword, and static variables retain their values between function calls."
+    },
+    {
+        question: "25. How do you send an email using PHP?",
+        answer: "Emails can be sent in PHP using the built-in `mail()` function or third-party libraries like PHPMailer and SwiftMailer for advanced features."
+    },
+    {
+        question: "26. What is the difference between `$_GET` and `$_POST` superglobals?",
+        answer: "`$_GET` retrieves data sent through the URL query string, while `$_POST` retrieves data sent through the HTTP POST method. `$_POST` is more secure for sensitive data."
+    },
+    {
+        question: "27. What is the use of `isset()` in PHP?",
+        answer: "`isset()` checks if a variable is set and is not NULL. It is commonly used to verify if a form field has been filled."
+    },
+    {
+        question: "28. What is a multidimensional array in PHP?",
+        answer: "A multidimensional array is an array containing one or more arrays as its elements. It is used to store data in a matrix or table-like structure."
+    },
+    {
+        question: "29. How do you implement form validation in PHP?",
+        answer: "Form validation in PHP involves checking form inputs for errors, sanitizing inputs to prevent XSS or SQL injection, and providing user feedback for corrections."
+    },
+    {
+        question: "30. What is a cookie in PHP, and how is it created?",
+        answer: "A cookie is a small file stored on the client’s browser to track user data. It is created in PHP using the `setcookie()` function, specifying name, value, and optional parameters like expiry time."
+    },
+    {
+        question: "31. How do you destroy a PHP session?",
+        answer: "A PHP session can be destroyed using the `session_destroy()` function. Additionally, you should unset session variables using `unset($_SESSION['var'])`."
+    },
+    {
+        question: "32. What are patterns and matching in PHP?",
+        answer: "Patterns and matching in PHP involve using regular expressions with functions like `preg_match()` to search, match, or replace patterns in strings."
+    },
+    {
+        question: "33. What is the purpose of the `try-catch` block in PHP?",
+        answer: "`try-catch` blocks handle exceptions by catching errors and allowing developers to execute alternative code when an exception occurs."
+    },
+    {
+        question: "34. How do you define a constant in PHP?",
+        answer: "Constants in PHP are defined using the `define()` function or the `const` keyword. Constants hold immutable values and are globally accessible."
+    },
+    {
+        question: "35. What is the `JOIN` clause in SQL?",
+        answer: "`JOIN` is used to combine rows from two or more tables based on a related column. Types include INNER JOIN, LEFT JOIN, RIGHT JOIN, and FULL OUTER JOIN."
+    },
+    {
+        question: "36. Explain the difference between `abstract` classes and interfaces in PHP.",
+        answer: "Abstract classes allow both implemented and abstract methods and can have properties. Interfaces can only declare methods without implementations and cannot have properties."
+    },
+    {
+        question: "37. What is the purpose of the `mysql_real_escape_string()` function?",
+        answer: "`mysql_real_escape_string()` escapes special characters in a string for use in an SQL query, helping prevent SQL injection."
+    },
+    {
+        question: "38. What is the purpose of the `LIMIT` clause in SQL?",
+        answer: "The `LIMIT` clause restricts the number of rows returned by a query. It is often used with `OFFSET` to paginate results."
+    },
+    {
+        question: "39. What are static methods and properties in PHP?",
+        answer: "Static methods and properties belong to the class rather than an instance. They are accessed using `ClassName::methodName()` without creating an object."
+    },
+    {
+        question: "40. How do you use the `explode()` and `implode()` functions in PHP?",
+        answer: "`explode()` splits a string into an array based on a delimiter, while `implode()` joins array elements into a string with a specified separator."
+    },
+    {
+        question: "41. What is the purpose of `ORDER BY` in SQL?",
+        answer: "`ORDER BY` sorts query results in ascending (default) or descending order based on specified columns."
+    },
+    {
+        question: "42. What are SQL functions, and give some examples.",
+        answer: "SQL functions perform operations on data. Examples include `AVG()` for average, `SUM()` for total, `COUNT()` for counting rows, `MIN()` for minimum, and `MAX()` for maximum."
+    },
+    {
+        question: "43. How do you create a constructor in PHP?",
+        answer: "A constructor in PHP is a method named `__construct()` within a class. It is automatically executed when an object is instantiated, often used for initializing properties."
+    },
+    {
+        question: "44. What is the purpose of the `TRUNCATE` statement in SQL?",
+        answer: "`TRUNCATE` removes all rows from a table, resets any auto-increment counters, and is faster than `DELETE` but irreversible."
+    },
+    {
+        question: "45. Explain the concept of inheritance in PHP OOP.",
+        answer: "Inheritance allows one class (child class) to inherit properties and methods from another class (parent class). It promotes code reuse and hierarchical relationships."
+    },
+    {
+        question: "46. How do you connect to a MySQL database using PDO in PHP?",
+        answer: "To connect using PDO, create a new PDO object with the DSN (Data Source Name), username, and password. Example: `$pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');`"
+    },
+    {
+        question: "47. What are PHP filters, and how are they used?",
+        answer: "PHP filters validate and sanitize input data. The `filter_var()` function applies filters like `FILTER_VALIDATE_EMAIL` and `FILTER_SANITIZE_STRING`."
+    },
+    {
+        question: "48. What is an abstract class in PHP?",
+        answer: "An abstract class is a class with at least one abstract method. Abstract methods are declared but not defined, forcing child classes to provide an implementation."
+    },
+    {
+        question: "49. What is the difference between `unlink()` and `unset()` in PHP?",
+        answer: "`unlink()` deletes a file from the filesystem, while `unset()` removes a variable from memory."
+    },
+    {
+        question: "50. What is the purpose of `GROUP BY` and `HAVING` in SQL?",
+        answer: "`GROUP BY` groups rows based on a column, while `HAVING` applies conditions on grouped data, often used with aggregate functions."
+    }
+];
+export const interviewQuestions = [
+    {
+        question: "1. What is PHP, and why is it widely used in web development?",
+        description: "This question assesses your foundational understanding of PHP and its role in web development.",
+        points: [
+            "PHP stands for Hypertext Preprocessor, and it is a server-side scripting language.",
+            "It is used for developing dynamic and interactive websites.",
+            "PHP is platform-independent, integrates easily with various databases, and supports a wide range of frameworks and libraries.",
+            "It is open-source and has a low learning curve, making it a popular choice for developers."
+        ],
+        code: null
+    },
+    {
+        question: "2. Explain the difference between GET and POST methods in PHP.",
+        description: "This question examines your understanding of HTTP methods used in form submissions.",
+        points: [
+            "GET sends data through the URL and is visible to users, whereas POST sends data in the request body and is not visible.",
+            "GET has a size limitation on data, but POST does not.",
+            "GET is used for retrieving data, while POST is used for sending data securely, such as form submissions."
+        ],
+        code: null
+    },
+    {
+        question: "3. How do you handle form validation in PHP?",
+        description: "This question evaluates your approach to ensuring data integrity and security in forms.",
+        points: [
+            "Check if the form has been submitted using `isset()` or `$_SERVER['REQUEST_METHOD']`.",
+            "Validate inputs to ensure they meet the required criteria (e.g., email format, number range).",
+            "Sanitize inputs using functions like `filter_var()` or `htmlspecialchars()` to prevent XSS.",
+            "Provide user-friendly error messages for invalid inputs."
+        ],
+        code: `
+  <?php
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+      if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+          echo "Invalid email format";
+      }
+  }
+  ?>
+  `
+    },
+    {
+        question: "4. What is the difference between `include()` and `require()` in PHP?",
+        description: "This question tests your knowledge of code reusability and error handling in PHP.",
+        points: [
+            "`include()` and `require()` are used to insert code from one PHP file into another.",
+            "`include()` generates a warning if the file is not found but continues execution.",
+            "`require()` generates a fatal error if the file is not found, stopping script execution.",
+            "Use `require()` for critical files and `include()` for optional files."
+        ],
+        code: `
+  <?php
+  require("config.php"); // Fatal error if the file is missing
+  include("optional.php"); // Warning if the file is missing
+  ?>
+  `
+    },
+    {
+        question: "5. Explain the concept of sessions and cookies in PHP.",
+        description: "This question assesses your understanding of state management in web applications.",
+        points: [
+            "Sessions store user data on the server, while cookies store data on the client-side (browser).",
+            "Sessions are more secure because data is not exposed to the client.",
+            "Cookies persist across requests and can have an expiration time, whereas sessions usually end when the browser is closed.",
+            "Sessions are started using `session_start()` and stored in `$_SESSION`, while cookies are created using `setcookie()`."
+        ],
+        code: `
+  <?php
+  // Setting a session
+  session_start();
+  $_SESSION['username'] = 'JohnDoe';
+  
+  // Setting a cookie
+  setcookie('user', 'JohnDoe', time() + 3600); // 1-hour expiration
+  ?>
+  `
+    },
+    {
+        question: "6. How does PHP handle errors, and what are best practices for error handling?",
+        description: "This question evaluates your understanding of debugging and maintaining robust applications.",
+        points: [
+            "PHP has multiple error levels (e.g., Notices, Warnings, Fatal errors).",
+            "Error reporting can be controlled using `error_reporting()` and `ini_set()`.",
+            "Use `try-catch` blocks to handle exceptions gracefully.",
+            "Log errors to a file or monitoring system instead of displaying them on the screen in production."
+        ],
+        code: `
+  <?php
+  try {
+      $file = fopen("nonexistent.txt", "r");
+  } catch (Exception $e) {
+      error_log($e->getMessage(), 3, "/var/log/php_errors.log");
+      echo "An error occurred.";
+  }
+  ?>
+  `
+    },
+    {
+        question: "7. What is the purpose of `PDO` in PHP, and how is it different from `mysqli`?",
+        description: "This question focuses on database connectivity and modern practices in PHP.",
+        points: [
+            "PDO (PHP Data Objects) is a database abstraction layer supporting multiple databases (e.g., MySQL, SQLite, PostgreSQL).",
+            "`mysqli` is specific to MySQL.",
+            "PDO supports prepared statements for secure queries and better protection against SQL injection.",
+            "Switching databases is easier with PDO as it requires only changing the DSN."
+        ],
+        code: `
+  <?php
+  $pdo = new PDO("mysql:host=localhost;dbname=test", "username", "password");
+  $stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id");
+  $stmt->execute(['id' => 1]);
+  $result = $stmt->fetch();
+  ?>
+  `
+    },
+    {
+        question: "8. What is the difference between static and dynamic methods in PHP?",
+        description: "This question assesses your knowledge of object-oriented programming in PHP.",
+        points: [
+            "Static methods belong to the class, not an instance, and are accessed using `ClassName::methodName()`.",
+            "Dynamic methods belong to an object and require an instance for access.",
+            "Static methods are typically used for utility functions or methods that do not depend on instance data."
+        ],
+        code: `
+  <?php
+  class Utils {
+      public static function sayHello() {
+          return "Hello!";
+      }
+  }
+  echo Utils::sayHello(); // No object needed
+  ?>
+  `
+    },
+    {
+        question: "9. How do you perform file uploads in PHP?",
+        description: "This question examines your understanding of handling file uploads securely.",
+        points: [
+            "Set the `enctype` attribute of the form to `multipart/form-data`.",
+            "Use the `$_FILES` superglobal to access uploaded file information.",
+            "Validate file types and sizes to prevent security risks.",
+            "Move the uploaded file using `move_uploaded_file()`."
+        ],
+        code: `
+  <form action="upload.php" method="post" enctype="multipart/form-data">
+      <input type="file" name="file">
+      <button type="submit">Upload</button>
+  </form>
+  <?php
+  if ($_FILES["file"]["error"] === UPLOAD_ERR_OK) {
+      $destination = "uploads/" . basename($_FILES["file"]["name"]);
+      move_uploaded_file($_FILES["file"]["tmp_name"], $destination);
+  }
+  ?>
+  `
+    },
+    {
+        question: "10. Explain the difference between `public`, `protected`, and `private` access modifiers in PHP.",
+        description: "This question assesses your understanding of encapsulation in PHP.",
+        points: [
+            "`public`: Accessible from anywhere.",
+            "`protected`: Accessible within the class and its child classes.",
+            "`private`: Accessible only within the class it is defined in."
+        ],
+        code: `
+  <?php
+  class Example {
+      public $publicProp;
+      protected $protectedProp;
+      private $privateProp;
+  }
+  ?>
+  `
+    },
+    {
+        question: "11. What is the purpose of PHP constants, and how are they different from variables?",
+        description: "This question evaluates your understanding of constants and their role in programming.",
+        points: [
+            "Constants are defined using `define()` or `const` and cannot be changed once set.",
+            "Constants are automatically global and can be accessed anywhere without a `$` prefix.",
+            "Variables, on the other hand, can be reassigned and are scoped based on their declaration."
+        ],
+        code: `
+    <?php
+    define("SITE_NAME", "MyWebsite");
+    const VERSION = "1.0.0";
+    echo SITE_NAME; // Output: MyWebsite
+    ?>
+    `
+    },
+    {
+        question: "12. How can you prevent SQL injection attacks in PHP?",
+        description: "This question assesses your understanding of security practices in handling databases.",
+        points: [
+            "Use prepared statements with `PDO` or `mysqli` to separate SQL code from data.",
+            "Validate and sanitize user inputs before using them in queries.",
+            "Avoid directly including user inputs in SQL queries.",
+            "Use database-specific escaping functions when prepared statements are not available."
+        ],
+        code: `
+    <?php
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
+    $stmt->execute(['email' => $email]);
+    $result = $stmt->fetch();
+    ?>
+    `
+    },
+    {
+        question: "13. What are namespaces in PHP, and why are they important?",
+        description: "This question evaluates your understanding of organizing and managing code in large projects.",
+        points: [
+            "Namespaces prevent name conflicts between classes, functions, and constants in different libraries.",
+            "They allow for better organization of code in large applications.",
+            "Namespaces are declared using the `namespace` keyword at the top of a file."
+        ],
+        code: `
+    <?php
+    namespace App\Models;
+    
+    class User {
+        public function getName() {
+            return "John Doe";
+        }
+    }
+    ?>
+    `
+    },
+    {
+        question: "14. What is the difference between abstract classes and interfaces in PHP?",
+        description: "This question tests your knowledge of object-oriented design principles.",
+        points: [
+            "Abstract classes can have both abstract methods (no implementation) and concrete methods (with implementation).",
+            "Interfaces can only have method declarations (no implementation).",
+            "A class can implement multiple interfaces but can only extend one abstract class."
+        ],
+        code: `
+    <?php
+    abstract class Shape {
+        abstract public function area();
+    }
+    
+    interface Drawable {
+        public function draw();
+    }
+    ?>
+    `
+    },
+    {
+        question: "15. How can you connect a PHP application to a MySQL database?",
+        description: "This question evaluates your knowledge of database connectivity in PHP.",
+        points: [
+            "You can connect to MySQL using either `mysqli` or `PDO`.",
+            "Use `mysqli_connect()` or `new PDO()` to establish the connection.",
+            "Always handle connection errors and use secure credentials."
+        ],
+        code: `
+    <?php
+    $pdo = new PDO("mysql:host=localhost;dbname=testdb", "username", "password");
+    if ($pdo) {
+        echo "Connected successfully!";
+    }
+    ?>
+    `
+    },
+    {
+        question: "16. What are magic methods in PHP, and can you provide some examples?",
+        description: "This question assesses your understanding of special methods in PHP classes.",
+        points: [
+            "Magic methods in PHP are predefined methods that start with `__` and provide special functionality.",
+            "`__construct()` is called when an object is created.",
+            "`__destruct()` is called when an object is destroyed.",
+            "`__get()` and `__set()` handle property access dynamically."
+        ],
+        code: `
+    <?php
+    class Example {
+        public function __construct() {
+            echo "Object created!";
+        }
+        public function __destruct() {
+            echo "Object destroyed!";
+        }
+    }
+    ?>
+    `
+    },
+    {
+        question: "17. What are the differences between `==` and `===` operators in PHP?",
+        description: "This question tests your understanding of PHP comparison operators.",
+        points: [
+            "`==` checks for value equality, ignoring type.",
+            "`===` checks for value equality and type.",
+            "Use `===` for strict comparisons to avoid unexpected behavior due to type coercion."
+        ],
+        code: `
+    <?php
+    var_dump(1 == "1"); // true
+    var_dump(1 === "1"); // false
+    ?>
+    `
+    },
+    {
+        question: "18. What is the significance of the `__autoload` function and `spl_autoload_register()` in PHP?",
+        description: "This question evaluates your understanding of autoloading classes in PHP.",
+        points: [
+            "`__autoload()` was used to load classes automatically when they are instantiated.",
+            "`spl_autoload_register()` is a modern alternative that allows multiple autoload functions.",
+            "These functions eliminate the need to manually include or require class files."
+        ],
+        code: `
+    <?php
+    spl_autoload_register(function ($className) {
+        include $className . ".php";
+    });
+    ?>
+    `
+    },
+    {
+        question: "19. How do you handle file errors during uploads in PHP?",
+        description: "This question tests your ability to handle file upload scenarios robustly.",
+        points: [
+            "Check the `$_FILES['file']['error']` property to identify upload errors.",
+            "Use constants like `UPLOAD_ERR_OK` to compare error codes.",
+            "Provide user feedback based on the error codes."
+        ],
+        code: `
+    <?php
+    if ($_FILES["file"]["error"] !== UPLOAD_ERR_OK) {
+        echo "Error occurred during file upload.";
+    }
+    ?>
+    `
+    },
+    {
+        question: "20. What are the common types of filters available in PHP, and how are they used?",
+        description: "This question evaluates your understanding of data validation and sanitization using PHP filters.",
+        points: [
+            "Common filters include `FILTER_VALIDATE_EMAIL`, `FILTER_VALIDATE_URL`, `FILTER_SANITIZE_STRING`, and `FILTER_SANITIZE_NUMBER_INT`.",
+            "They are used with `filter_var()` for validating and sanitizing inputs.",
+            "Filters ensure data integrity and prevent injection attacks."
+        ],
+        code: `
+    <?php
+    $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+    if ($email === false) {
+        echo "Invalid email address.";
+    }
+    ?>
+    `
+    }
+];

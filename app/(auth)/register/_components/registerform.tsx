@@ -38,13 +38,13 @@ export default function SignUpForm() {
         }
     };
 
-    const handleSignInGitHub = async () => {
-        try {
-            await signIn('github', { callbackUrl: '/dashboard' });
-        } catch (err) {
-            console.error('linkedin sign-in error:', err);
-        }
-    };
+    // const handleSignInGitHub = async () => {
+    //     try {
+    //         await signIn('github', { callbackUrl: '/dashboard' });
+    //     } catch (err) {
+    //         console.error('linkedin sign-in error:', err);
+    //     }
+    // };
 
     useEffect(() => {
         if (session?.user) {
@@ -137,7 +137,7 @@ export default function SignUpForm() {
                             Google
                         </span>
                     </button>
-                    <button
+                    {/* <button
                         className=" relative group/btn flex space-x-2 items-center justify-center px-4 w-full text-black border-2 border-black dark:border-none rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
                         type="submit"
                         onClick={handleSignInGitHub}
@@ -146,7 +146,7 @@ export default function SignUpForm() {
                         <span className="text-neutral-700 dark:text-neutral-300 text-sm">
                             GitHub
                         </span>
-                    </button>
+                    </button> */}
                 </div>
 
                 <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-4 h-[1px] w-full" />

@@ -9,21 +9,20 @@ export default function BottomCodingQuestion() {
             className="relative mt-12 flex w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl"
             color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
         >
-            <Card>
+            <Card className="p-2">
+                <div className="flex flex-col gap-6">
+                    <div className="flex flex-col gap-2">
                 <CardHeader>
                     <CardTitle>Important Coding Questions</CardTitle>
-                    <CardDescription>Sharpen your coding skills with these essential problems</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <p>
-                        Practice coding questions frequently asked in technical interviews and competitive programming contests.
-                    </p>
+                    <p>Sharpen your coding skills with these essential problems. Practice coding questions frequently asked in technical interviews and competitive programming contests.</p>
                 </CardContent>
-                <CardFooter>
-                    <Button asChild>
-                        <Link href="/coding-questions">Start Coding</Link>
-                    </Button>
-                </CardFooter>
+                </div>
+                <Button asChild className="w-full sm:w-[80%] md:w-[70%] mx-auto">
+                    <Link href="#">Coming Soon...</Link>
+                </Button>
+                </div>
             </Card>
         </ShineBorder>
     )
