@@ -36,6 +36,21 @@ const SlideInModal: React.FC<SlideInModalProps> = ({ isOpen, onClose, lessonData
     const { toast } = useToast();
     if (!lessonData) return null;
 
+    const highlightBackticks = (text: string) => {
+        // Regex to match content between backticks
+        const parts = text.split(/(`[^`]+`)/g);
+
+        return parts.map((part, index) =>
+            part.startsWith("`") && part.endsWith("`") ? (
+                <span key={index} className="font-bold">
+                    {part.slice(1, -1)} {/* Remove backticks */}
+                </span>
+            ) : (
+                part
+            )
+        );
+    };
+
     const handleSolution = () => {
         toast({
             title: "Success",
@@ -51,8 +66,8 @@ const SlideInModal: React.FC<SlideInModalProps> = ({ isOpen, onClose, lessonData
                 style={{ maxWidth: '90vw' }}
             >
                 <SheetHeader className="pt-4">
-                    <SheetTitle>{lessonData.title}</SheetTitle>
-                    <SheetDescription>{lessonData.description}</SheetDescription>
+                    <SheetTitle>{highlightBackticks(lessonData.title)}</SheetTitle>
+                    <SheetDescription>{highlightBackticks(lessonData.description)}</SheetDescription>
                 </SheetHeader>
                 <div className="mt-6">
                     {
@@ -67,9 +82,9 @@ const SlideInModal: React.FC<SlideInModalProps> = ({ isOpen, onClose, lessonData
                                 >
                                     <div className="p-6">
                                         <h2 className="text-xl font-bold text-black mb-2">
-                                            {index + 1}. {section.title}
+                                            {index + 1}. { highlightBackticks(section.title) }
                                         </h2>
-                                        <p className="text-black mb-6 text-lg">{section.content}</p>
+                                        <p className="text-black mb-6 text-lg">{ highlightBackticks(section.content) }</p>
                                         {
                                             section.points && (
                                                 <ul className="list-disc pl-5 text-black">

@@ -22,6 +22,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useSession } from "next-auth/react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import twitterLogo from "@/components/homepage/X_logo.jpg";
 
 const technicalSkills = [
     "JavaScript", "Python", "React", "Node.js", "TypeScript", "Angular", "Vue.js", "Java", "C++", "Ruby", "PHP", "Swift",
@@ -491,25 +492,14 @@ export default function Home() {
                             <div className="w-full flex flex-col items-center gap-4 md:items-start">
                                 <motion.div
                                     className="w-full flex justify-center relative"
-                                    whileHover={{ scale: 1.05 }}
                                     transition={{ type: "spring", stiffness: 300 }}
                                 >
-                                    <Avatar className="h-48 w-48 rounded-full border-4 border-white shadow-lg mx-auto">
-                                        <AvatarImage src={session?.user?.image!} alt="User Profile Picture" />
-                                        {/* <AvatarFallback>
-                                            <Image
-                                                src={userprofileImage}
-                                                alt="Profile"
-                                                className="object-cover"
-                                                width={192}
-                                                height={192}
-                                            />
-                                        </AvatarFallback> */}
-                                    </Avatar>
                                     <Image
                                         src={session?.user?.image || userprofileImage}
                                         alt="User Profile Image"
                                         className="h-48 w-48 rounded-full border-4 border-white shadow-lg mx-auto"
+                                        width={100}
+                                        height={100}
                                     />
                                     <Button
                                         variant="ghost"
@@ -555,15 +545,32 @@ export default function Home() {
                                         <div className="flex gap-3 justify-center md:justify-start">
                                             <SocialButton href={publicData.github} icon={Github} />
                                             <SocialButton href={publicData.linkedin} icon={Linkedin} />
-                                            <Link href={publicData.twitter} title="tweet icons"></Link>
+                                            {/* {
+                                                publicData.twitter && (
+                                                    <Link href={publicData.twitter} className="flex items-center justify-center">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" fill="none" viewBox="0 0 512 512" id="twitter">
+                                                            <g clip-path="url(#clip0_84_15698)">
+                                                                <rect width="512" height="512" fill="#fff" rx="60"></rect>
+                                                                <path fill="#000" d="M355.904 100H408.832L293.2 232.16L429.232 412H322.72L239.296 302.928L143.84 412H90.8805L214.56 270.64L84.0645 100H193.28L268.688 199.696L355.904 100ZM337.328 380.32H366.656L177.344 130.016H145.872L337.328 380.32Z"></path>
+                                                            </g>
+                                                            <defs>
+                                                                <clipPath id="clip0_84_15698">
+                                                                    <rect width="512" height="512" fill="#fff"></rect>
+                                                                </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </Link>
+                                                )
+                                            } */}
+                                            <SocialButton href={publicData.twitter} icon={X} />
                                             <SocialButton href={publicData.leetcode} icon={Code} />
-                                            <Link href={publicData.leetcode}>
+                                            {/* <Link href={publicData.leetcode}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="leetcode">
                                                     <path fill="#B3B1B0" d="M22 14.355c0-.742-.564-1.346-1.26-1.346H10.676c-.696 0-1.26.604-1.26 1.346s.563 1.346 1.26 1.346H20.74c.696.001 1.26-.603 1.26-1.346z"></path>
                                                     <path fill="#E7A41F" d="m3.482 18.187 4.313 4.361c.973.979 2.318 1.452 3.803 1.452 1.485 0 2.83-.512 3.805-1.494l2.588-2.637c.51-.514.492-1.365-.039-1.9-.531-.535-1.375-.553-1.884-.039l-2.676 2.607c-.462.467-1.102.662-1.809.662s-1.346-.195-1.81-.662l-4.298-4.363c-.463-.467-.696-1.15-.696-1.863 0-.713.233-1.357.696-1.824l4.285-4.38c.463-.467 1.116-.645 1.822-.645s1.346.195 1.809.662l2.676 2.606c.51.515 1.354.497 1.885-.038.531-.536.549-1.387.039-1.901l-2.588-2.636a4.994 4.994 0 0 0-2.392-1.33l-.034-.007 2.447-2.503c.512-.514.494-1.366-.037-1.901-.531-.535-1.376-.552-1.887-.038l-10.018 10.1C2.509 11.458 2 12.813 2 14.311c0 1.498.509 2.896 1.482 3.876z"></path>
                                                     <path fill="#070706" d="M8.115 22.814a2.109 2.109 0 0 1-.474-.361c-1.327-1.333-2.66-2.66-3.984-3.997-1.989-2.008-2.302-4.937-.786-7.32a6 6 0 0 1 .839-1.004L13.333.489c.625-.626 1.498-.652 2.079-.067.56.563.527 1.455-.078 2.066-.769.776-1.539 1.55-2.309 2.325-.041.122-.14.2-.225.287-.863.876-1.75 1.729-2.601 2.618-.111.116-.262.186-.372.305-1.423 1.423-2.863 2.83-4.266 4.272-1.135 1.167-1.097 2.938.068 4.127 1.308 1.336 2.639 2.65 3.961 3.974.067.067.136.132.204.198.468.303.474 1.25.183 1.671-.321.465-.74.75-1.333.728-.199-.006-.363-.086-.529-.179z"></path>
                                                 </svg>
-                                            </Link>
+                                            </Link> */}
                                             <SocialButton href={publicData.website} icon={Award} />
                                         </div>
                                     </div>

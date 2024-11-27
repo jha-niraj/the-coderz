@@ -41,17 +41,17 @@ export default function SignInForm() {
 		}
 	}
 
-	const handleSignInWithGitHub = async() => {
-		try {
-			const callback = await signIn("github", { callbackUrl: "/profile" });
-			if(callback?.error) {
-				toast.error("Email not registered");
-				router.push("/register");
-			}
-		} catch(err: any) {
-			console.error("Github sign-in error: " + err);
-		}
-	}
+	// const handleSignInWithGitHub = async() => {
+	// 	try {
+	// 		const callback = await signIn("github", { callbackUrl: "/profile" });
+	// 		if(callback?.error) {
+	// 			toast.error("Email not registered");
+	// 			router.push("/register");
+	// 		}
+	// 	} catch(err: any) {
+	// 		console.error("Github sign-in error: " + err);
+	// 	}
+	// }
 
 	const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -108,7 +108,7 @@ export default function SignInForm() {
 						</span>
 						<BottomGradient />
 					</button>
-					<button
+					{/* <button
 						className=" relative group/btn flex space-x-2 items-center justify-center px-4 w-full text-black border-2 border-black dark:border-none rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
 						type="submit"
 						onClick={handleSignInWithGitHub}
@@ -118,7 +118,7 @@ export default function SignInForm() {
 							GitHub
 						</span>
 						<BottomGradient />
-					</button>
+					</button> */}
 				</div>
 
 				<div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-4 h-[1px] w-full" />

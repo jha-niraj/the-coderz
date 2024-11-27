@@ -86,17 +86,16 @@ interface PathwayProps {
         description: string;
     }[]
 }
-
 export default function Component() {
     const [selectedPathway, setSelectedPathway] = useState<PathwayProps | null>(null);
     const { data: session, status } = useSession();
     const router = useRouter();
 
-    useEffect(() => {
-        if (!session?.user) {
-            router.push("/signin");
-        }
-    }, [router, session?.user])
+    // useEffect(() => {
+    //     if (!session?.user) {
+    //         router.push("/signin");
+    //     }
+    // }, [router, session?.user])
 
     const handleCardClick = (pathway: PathwayProps) => {
         setSelectedPathway(pathway);

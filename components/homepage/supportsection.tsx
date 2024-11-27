@@ -41,7 +41,7 @@ const SupportSection = () => {
         <section className="text-black dark:text-white mx-auto rounded-2xl py-16">
             <Toaster />
             <ShineBorder
-                className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl"
+                className="flex max-w-8xl flex-col mx-auto items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl"
                 color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
             >
                 <motion.section
