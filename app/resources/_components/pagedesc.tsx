@@ -21,7 +21,7 @@ export default function PageDescription({ title, description }: PageDescriptionP
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-center text-lg"
+                className="text-center text-lg pl-1 pr-1"
             >
                 {
                     description

@@ -261,11 +261,11 @@ const categories = [
 		resources: [
 			{
 				name: 'Docker',
-				url: '/resources/docker',
+				url: '/resources/devops/docker',
 				icon: '🐳',
 				description: 'A platform for developing, shipping, and running applications in containers.',
 				color: 'from-blue-500 to-blue-300',
-				status: "coming"
+				status: "live"
 			},
 			{
 				name: 'Kubernetes',
