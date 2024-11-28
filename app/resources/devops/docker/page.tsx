@@ -2,10 +2,9 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import QuizAndContribute from '../../_components/quizcontribute';
 import UnitAccordion from '../../_components/unitaccordian';
 import PageDescription from '../../_components/pagedesc';
-import { lessonData, units, vivaQuestions, interviewQuestions } from '../../data/php';
+import { lessonData, units } from '../../data/docker';
 import BottomCodingQuestion from '../../_components/bottomcoding';
 import ShineBorder from '@/components/ui/shine-border';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,35 +12,42 @@ import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { QuestionProps, SubjectProps } from '@/app/types';
 import { toast } from '@/hooks/use-toast';
-import SlideInQuestions from '../../_components/slideinquestions';
 
 const pageDescription = {
-    title: "PHP Learning Path",
-    description: "Master PHP with our comprehensive course covering everything from basics to advanced topics Perfect for beginners and experienced programmers looking to enhance their skills."
+    title: "Docker Learning Resources",
+    description: "Master Docker with our comprehensive course covering everything from basics to advanced topics Perfect for beginners and experienced programmers looking to enhance their skills."
 }
 const vivaQuestionsDesc = {
-    title: "React Viva Questions",
+    title: "Docker Viva Questions",
     description: "Please try to answer the question from your side and then see the answer. For that we have used the Accrodian here."
 }
 const interviewQuestionsDesc = {
-    title: "React Interview Questions",
+    title: "Docker Interview Questions",
     description: "Please try to answer the question from your side and then see the answer. For that we have used the Accrodian here."
 }
-const PhpResourcePage = () => {
+const DockerRsources = () => {
     const router = useRouter();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [subject, setSubject] = useState<SubjectProps | null>(null);
     const [selectedSet, setSelectedSet] = useState<QuestionProps[] | null>(null);
 
     const handleVivaQuestions = () => {
-        setSubject(vivaQuestionsDesc)
-        setSelectedSet(vivaQuestions);
-        setIsModalOpen(true);
+        // setSubject(vivaQuestionsDesc)
+        // setSelectedSet(vivaQuestions);
+        // setIsModalOpen(true);
+
+        toast({
+            title: "Coming Soon",
+        });
     }
     const handleInterviewQuestions = () => {
-        setSubject(interviewQuestionsDesc)
-        setSelectedSet(interviewQuestions);
-        setIsModalOpen(true);
+        // setSubject(interviewQuestionsDesc)
+        // setSelectedSet(interviewQuestions);
+        // setIsModalOpen(true);
+
+        toast({
+            title: "Coming Soon",
+        });
     }
 
     return (
@@ -52,7 +58,7 @@ const PhpResourcePage = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
-                    className="grid gap-6 grid-cols-1 md:grid-cols-2 rounded-lg p-6 mb-4"
+                    className="grid gap-6 grid-cols-1 md:grid-cols-2 rounded-lg p-3 mb-4"
                 >
                     <ShineBorder
                         className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl"
@@ -104,14 +110,8 @@ const PhpResourcePage = () => {
                 }
                 <BottomCodingQuestion />
             </div>
-            <SlideInQuestions
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                subject={subject}
-                questionsData={selectedSet}
-            />
         </div>
     );
 };
 
-export default PhpResourcePage;
+export default DockerRsources;

@@ -88,9 +88,9 @@ const theCoderzFamily = [
         bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
     },
     {
-        name: "Imran",
+        name: "Priyanshu Singh",
         img: teamImage,
-        role: "Technical Team",
+        role: "App Development Team",
         linkedin: "https://linkedin.com/in/janedoe",
         github: "https://github.com/janedoe",
         instagram: "https://instagram.com/janedoe",

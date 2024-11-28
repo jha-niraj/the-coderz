@@ -80,35 +80,40 @@ const ProjectsPage: React.FC = () => {
         });
     }
     const handleProjectStart = async(id: string) => {
-        console.log("Id of the Project: " + id);
-        setStartingProject(true);
+        toast({
+            title: "Coming Soon...",
+            description: "We are working on this features which enables you to start a projects that will be added to your dashboard and will be evaluated by us.",
+            variant: "default"
+        });
+        // console.log("Id of the Project: " + id);
+        // setStartingProject(true);
 
-        try {
-            const response = await axios.post("/api/projectstart", { id }, {
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-            console.log(response.data.data);
-            if(response.status === 201 || response.status === 200) {
-                toast({
-                    title: "Successfully Started a Project",
-                    description: "Please complete the project with less amount of time and do everything that is listed to get high grades"
-                })
-            }
-        } catch(err: any) {
-            if (axios.isAxiosError(err)) {
-				toast({
-					title: err.response?.data?.err || 'Failed to Start a Project. Please try again after some time.',
-				});
-			} else {
-				toast({
-					title: 'Failed to Start a Project. Please try again after some time.',
-				});
-			}
-        } finally {
-            setStartingProject(false);
-        }
+        // try {
+        //     const response = await axios.post("/api/projectstart", { id }, {
+        //         headers: {
+        //             "Content-Type": "application/json"
+        //         }
+        //     })
+        //     console.log(response.data.data);
+        //     if(response.status === 201 || response.status === 200) {
+        //         toast({
+        //             title: "Successfully Started a Project",
+        //             description: "Please complete the project with less amount of time and do everything that is listed to get high grades"
+        //         })
+        //     }
+        // } catch(err: any) {
+        //     if (axios.isAxiosError(err)) {
+		// 		toast({
+		// 			title: err.response?.data?.err || 'Failed to Start a Project. Please try again after some time.',
+		// 		});
+		// 	} else {
+		// 		toast({
+		// 			title: 'Failed to Start a Project. Please try again after some time.',
+		// 		});
+		// 	}
+        // } finally {
+        //     setStartingProject(false);
+        // }
     }
 
     return (
