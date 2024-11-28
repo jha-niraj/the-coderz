@@ -8,7 +8,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Instagram, BringToFront, Target, Users, Rocket, RefreshCcw, LucideIcon } from 'lucide-react';
 import SmoothScroll from '@/components/smoothscroll';
-import teamImage from "./images/nirajjha (copy).jpeg";
+import nirajjha from "./images/nirajjha (copy).jpeg";
+import tejasvi from "./images/tejasvi.jpg";
+import ansh from "./images/ansh.jpg"
+import omsingh from "./images/omsingh.jpeg";
+import shelly from "./images/shelly.jpeg";
 import { RainbowButton } from '@/components/ui/rainbow-button';
 import { cn } from "@/app/lib/utils";
 import Marquee from "@/components/ui/marquee";
@@ -16,62 +20,56 @@ import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card'
 
 const theCoderzFamily = [
     {
-        name: "Abhinav Shankar",
-        img: teamImage,
-        role: "Management / Reasearch and Development",
-        linkedin: "https://linkedin.com/in/janedoe",
-        github: "https://github.com/janedoe",
-        instagram: "https://instagram.com/janedoe",
-        bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
+        name: "V Abhinava Shankar",
+        img: nirajjha,
+        role: "Management/Reasearch and Development",
+        linkedin: "https://www.linkedin.com/in/abhinavashankar/",
+        github: "https://github.com/AbhinavaShankar",
+        instagram: "https://www.instagram.com/_shankaranvinodh_"
     },
     {
         name: "Harsh Pandey",
-        img: teamImage,
+        img: nirajjha,
         role: "Public Relations Head",
         linkedin: "https://linkedin.com/in/janedoe",
         github: "https://github.com/janedoe",
-        instagram: "https://instagram.com/janedoe",
-        bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
+        instagram: "https://instagram.com/janedoe"
     },
     {
         name: "Niraj Jha",
-        img: teamImage,
+        img: nirajjha,
         role: "Lead Developer",
         linkedin: "https://linkedin.com/in/janedoe",
         github: "https://github.com/jha-niraj",
-        instagram: "https://instagram.com/janedoe",
-        bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
+        instagram: "https://instagram.com/janedoe"
     },
     {
         name: "Tejasvi Sinha",
-        img: teamImage,
-        role: "Social Media Management Head",
-        linkedin: "https://linkedin.com/in/janedoe",
-        github: "https://github.com/janedoe",
-        instagram: "https://instagram.com/janedoe",
-        bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
+        img: tejasvi,
+        role: "Social Media Head",
+        linkedin: "https://www.linkedin.com/in/tejasvi-sinha-7a784024b/",
+        github: "https://github.com/Tejasvi-sinha",
+        instagram: "https://www.instagram.com/_divinetej?igsh=emplNW5lNHpydmcz"
     },
     {
-        name: "Vaishnavi",
-        img: teamImage,
+        name: "Vaishnavi Raj",
+        img: shelly,
         role: "Research and Development",
-        linkedin: "https://linkedin.com/in/janedoe",
-        github: "https://github.com/janedoe",
-        instagram: "https://instagram.com/janedoe",
-        bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
+        linkedin: "https://linkedin.com/in/vaishnavirajj",
+        github: "https://github.com/vaishnavirajj",
+        instagram: "https://instagram.com/thshelley_"
     },
     {
-        name: "Ansh",
-        img: teamImage,
+        name: "Ansh Pratap Singh",
+        img: ansh,
         role: "Social Media Team",
-        linkedin: "https://linkedin.com/in/janedoe",
-        github: "https://github.com/janedoe",
-        instagram: "https://instagram.com/janedoe",
-        bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
+        linkedin: "https://www.linkedin.com/in/ansh-singh222",
+        github: "https://github.com/ANSH200418",
+        instagram: "https://www.instagram.com/_ansh__45?igsh=YXQ3NTllaTI4c2Nj"
     },
     {
         name: "Sangam",
-        img: teamImage,
+        img: nirajjha,
         role: "Social Media and Content Strategist",
         linkedin: "https://linkedin.com/in/janedoe",
         github: "https://github.com/janedoe",
@@ -79,17 +77,16 @@ const theCoderzFamily = [
         bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
     },
     {
-        name: "Om",
-        img: teamImage,
+        name: "Om Singh",
+        img: omsingh,
         role: "Tech Team / Deployment Head",
-        linkedin: "https://linkedin.com/in/janedoe",
-        github: "https://github.com/janedoe",
-        instagram: "https://instagram.com/janedoe",
-        bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
+        linkedin: "https://www.linkedin.com/in/byteom/",
+        github: "https://github.com/byteom",
+        instagram: "https://www.instagram.com/bytesom"
     },
     {
         name: "Priyanshu Singh",
-        img: teamImage,
+        img: nirajjha,
         role: "App Development Team",
         linkedin: "https://linkedin.com/in/janedoe",
         github: "https://github.com/janedoe",

@@ -7,7 +7,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sh
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectSeparator, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Image from 'next/image';
 import { ArrowRight, ChevronRight, Monitor, Smartphone, Sparkles, Terminal, Zap } from 'lucide-react';
 import { DropdownMenu } from '@radix-ui/react-dropdown-menu';
@@ -55,7 +55,7 @@ const ProjectsPage: React.FC = () => {
     const [activeCategory, setActiveCategory] = useState<string>('All');
     const [selectedLevel, setSelectedLevel] = useState<DifficultyLevel>("All");
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-    const [ startingProject, setStartingProject ] = useState<Boolean>(false);
+    const [startingProject, setStartingProject] = useState<Boolean>(false);
     const { toast } = useToast();
     const { data: session, status } = useSession();
     const router = useRouter();
@@ -79,7 +79,7 @@ const ProjectsPage: React.FC = () => {
             variant: "default"
         });
     }
-    const handleProjectStart = async(id: string) => {
+    const handleProjectStart = async (id: string) => {
         toast({
             title: "Coming Soon...",
             description: "We are working on this features which enables you to start a projects that will be added to your dashboard and will be evaluated by us.",
@@ -103,14 +103,14 @@ const ProjectsPage: React.FC = () => {
         //     }
         // } catch(err: any) {
         //     if (axios.isAxiosError(err)) {
-		// 		toast({
-		// 			title: err.response?.data?.err || 'Failed to Start a Project. Please try again after some time.',
-		// 		});
-		// 	} else {
-		// 		toast({
-		// 			title: 'Failed to Start a Project. Please try again after some time.',
-		// 		});
-		// 	}
+        // 		toast({
+        // 			title: err.response?.data?.err || 'Failed to Start a Project. Please try again after some time.',
+        // 		});
+        // 	} else {
+        // 		toast({
+        // 			title: 'Failed to Start a Project. Please try again after some time.',
+        // 		});
+        // 	}
         // } finally {
         //     setStartingProject(false);
         // }
@@ -338,18 +338,18 @@ const ProjectsPage: React.FC = () => {
                     <SheetContent className="w-full md:max-w-[640px] overflow-y-auto">
                         {
                             selectedProject && (
-                                <div className="space-y-8">
+                                <div className="space-y-8 text-black dark:text-white">
                                     <SheetHeader>
-                                        <h2 className="text-2xl font-semibold text-gray-800">{selectedProject.title}</h2>
+                                        <h2 className="text-2xl font-semibold">{selectedProject.title}</h2>
                                     </SheetHeader>
-                                    <p className="text-gray-600 mb-4">{selectedProject.description}</p>
+                                    <p className="mb-4">{selectedProject.description}</p>
                                     <div className="flex w-full justify-between mb-6">
                                         <div className="flex flex-col gap-2">
-                                            <h3 className="font-semibold text-gray-800">Tags</h3>
+                                            <h3 className="font-semibold">Tags</h3>
                                             <div className="flex gap-2">
                                                 {
                                                     selectedProject.tags.map((tag, index) => (
-                                                        <span key={index} className="px-3 py-1 bg-gray-200 rounded-full text-sm text-gray-800">
+                                                        <span key={index} className="px-3 py-1 bg-gray-200 rounded-full text-sm text-gray-800 dark:text-black">
                                                             {tag}
                                                         </span>
                                                     ))
@@ -357,11 +357,11 @@ const ProjectsPage: React.FC = () => {
                                             </div>
                                         </div>
                                         <div className="flex flex-col gap-2">
-                                            <h3 className="font-semibold text-gray-800">Tech Stack</h3>
+                                            <h3 className="font-semibold">Tech Stack</h3>
                                             <div className="flex gap-2">
                                                 {
                                                     selectedProject.techStack.map((tech, index) => (
-                                                        <span key={index} className="px-3 py-1 bg-gray-200 rounded-full text-sm text-gray-800">
+                                                        <span key={index} className="px-3 py-1 bg-gray-200 rounded-full text-sm text-gray-800 dark:text-black">
                                                             {tech}
                                                         </span>
                                                     ))
@@ -369,17 +369,18 @@ const ProjectsPage: React.FC = () => {
                                             </div>
                                         </div>
                                     </div>
+                                    <Separator />
                                     {
                                         selectedProject.image && (
                                             <div className="space-y-4 mb-6">
-                                                <h3 className="font-semibold text-gray-800">Reference Image</h3>
+                                                <h3 className="font-semibold">Reference Image</h3>
                                                 {
                                                     <div>
                                                         <Image
-                                                            src={selectedProject.image}
+                                                            src="https://media2.dev.to/cdn-cgi/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fue0r4k0fv4ts18ppp24n.png"
                                                             alt="Selected Project Image"
-                                                            width={400}
-                                                            height={400}
+                                                            width={600}
+                                                            height={200}
                                                             className=""
                                                         />
                                                     </div>
@@ -388,8 +389,8 @@ const ProjectsPage: React.FC = () => {
                                         )
                                     }
                                     <div className="space-y-4 mb-6">
-                                        <h3 className="font-semibold text-gray-800">Requirements</h3>
-                                        <ul className="list-disc pl-5 space-y-2 text-gray-600">
+                                        <h3 className="font-semibold">Requirements</h3>
+                                        <ul className="list-disc pl-5 space-y-2 text-gray-600 dark:text-white">
                                             {
                                                 selectedProject.requirements.map((req, index) => (
                                                     <li key={index}>{req}</li>
@@ -398,12 +399,12 @@ const ProjectsPage: React.FC = () => {
                                         </ul>
                                     </div>
                                     <div className="space-y-4 mb-6">
-                                        <h3 className="font-semibold text-gray-800">Expected Output</h3>
-                                        <p className="text-gray-600">{selectedProject.expectedOutput}</p>
+                                        <h3 className="font-semibold">Expected Output</h3>
+                                        <p className="text-gray-600 dark:text-white">{selectedProject.expectedOutput}</p>
                                     </div>
                                     <div className="space-y-4 mb-6">
-                                        <h3 className="font-semibold text-gray-800">Learning Benefits</h3>
-                                        <ul className="list-disc pl-5 space-y-2 text-gray-600">
+                                        <h3 className="font-semibold">Learning Benefits</h3>
+                                        <ul className="list-disc pl-5 space-y-2 text-gray-600 dark:text-white">
                                             {
                                                 selectedProject.learningBenefits.map((benefit, index) => (
                                                     <li key={index}>{benefit}</li>
@@ -412,8 +413,8 @@ const ProjectsPage: React.FC = () => {
                                         </ul>
                                     </div>
                                     <div className="space-y-4 mb-6">
-                                        <h3 className="font-semibold text-gray-800">Evaluation Criteria</h3>
-                                        <ul className="list-disc pl-5 space-y-2 text-gray-600">
+                                        <h3 className="font-semibold">Evaluation Criteria</h3>
+                                        <ul className="list-disc pl-5 space-y-2 text-gray-600 dark:text-white">
                                             {
                                                 selectedProject.evaluationCriteria.map((criteria, index) => (
                                                     <li key={index}>{criteria}</li>
@@ -422,8 +423,8 @@ const ProjectsPage: React.FC = () => {
                                         </ul>
                                     </div>
                                     <div className="space-y-4 mb-6">
-                                        <h3 className="font-semibold text-gray-800">Extensions</h3>
-                                        <ul className="list-disc pl-5 space-y-2 text-gray-600">
+                                        <h3 className="font-semibold">Extensions</h3>
+                                        <ul className="list-disc pl-5 space-y-2 text-gray-600 dark:text-white">
                                             {
                                                 selectedProject.extensions.map((extension, index) => (
                                                     <li key={index}>{extension}</li>
@@ -432,8 +433,8 @@ const ProjectsPage: React.FC = () => {
                                         </ul>
                                     </div>
                                     <div className="space-y-4 mb-6">
-                                        <h3 className="font-semibold text-gray-800">Prerequisites</h3>
-                                        <ul className="list-disc pl-5 space-y-2 text-gray-600">
+                                        <h3 className="font-semibold">Prerequisites</h3>
+                                        <ul className="list-disc pl-5 space-y-2 text-gray-600 dark:text-white">
                                             {
                                                 selectedProject.prerequisites.map((prerequisite, index) => (
                                                     <li key={index}>{prerequisite}</li>
@@ -442,8 +443,8 @@ const ProjectsPage: React.FC = () => {
                                         </ul>
                                     </div>
                                     <div className="space-y-4 mb-6">
-                                        <h3 className="font-semibold text-gray-800">Approval Criteria</h3>
-                                        <ul className="list-disc pl-5 space-y-2 text-gray-600">
+                                        <h3 className="font-semibold">Approval Criteria</h3>
+                                        <ul className="list-disc pl-5 space-y-2 text-gray-600 dark:text-white">
                                             {
                                                 selectedProject.approvalCriteria.map((criteria, index) => (
                                                     <li key={index}>{criteria}</li>
@@ -452,15 +453,13 @@ const ProjectsPage: React.FC = () => {
                                         </ul>
                                     </div>
                                     <div className="space-y-4 mb-6">
-                                        <h3 className="font-semibold text-gray-800">Resources</h3>
-                                        <ul className="text-gray-600 grid grid-cols-1 sm:grid-cols-2">
+                                        <h3 className="font-semibold">Resources</h3>
+                                        <ul className="text-gray-600 dark:text-white grid grid-cols-1 sm:grid-cols-2">
                                             {
                                                 selectedProject.resources.map((resource, index) => (
-                                                    <li key={index} className="">
-                                                        <Link href={resource.link} className="text-blue-600 underline hover:border-2 hover:border-black p-2 hover:rounded-lg transition-all duration-300" target="_blank" rel="noopener noreferrer">
-                                                            {resource.name}
-                                                        </Link>
-                                                    </li>
+                                                    <Link href={resource.link} className="text-blue-600 underline hover:border-2 hover:border-black p-2 hover:rounded-lg transition-all duration-300" target="_blank" rel="noopener noreferrer">
+                                                        {resource.name}
+                                                    </Link>
                                                 ))
                                             }
                                         </ul>
@@ -481,7 +480,7 @@ const ProjectsPage: React.FC = () => {
                                         >
                                             <RainbowButton>Join Discord</RainbowButton>
                                         </Link>
-                                        <ShimmerButton 
+                                        <ShimmerButton
                                             className="w-full"
                                             onClick={() => handleProjectStart(selectedProject?.id)}
                                         >

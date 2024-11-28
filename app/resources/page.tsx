@@ -243,7 +243,7 @@ const categories = [
 				icon: '🔢',
 				description: 'A statistical programming language designed for data analysis, statistical computing, and graphical visualization.',
 				color: 'from-blue-500 to-blue-300',
-				status: "live"
+				status: "coming"
 			},
 			{
 				name: 'Tableau',
@@ -251,7 +251,7 @@ const categories = [
 				icon: '📈',
 				description: 'A powerful data visualization and business intelligence tool that transforms raw data into interactive, easily understandable visual representations.',
 				color: 'from-purple-500 to-purple-300',
-				status: "live"
+				status: "coming"
 			}
 		],
 	},

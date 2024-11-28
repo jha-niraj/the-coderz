@@ -7,6 +7,7 @@ import ClientLayout from "./clientlayout";
 import { ThemeProvider } from "@/components/themeprovider";
 import MainLayout from "./mainlayout";
 import { Toaster } from "@/components/ui/toaster";
+import Script from "next/script";
 
 const poppins = Poppins({ subsets: ["latin"], weight: "300" });
 
@@ -22,6 +23,22 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
+			<head>
+				<Script 
+					async 
+					src="https://www.googletagmanager.com/gtag/js?id=G-5NCWJTM4N2"
+
+				></Script>
+				<Script>
+					{`
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+
+					gtag('config', 'G-5NCWJTM4N2');
+				`}
+				</Script>
+			</head>
 			<body className={poppins.className} style={{ scrollBehavior: "smooth" }}>
 				<ThemeProvider
 					attribute="class"
