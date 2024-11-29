@@ -24,8 +24,8 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<head>
-				<Script 
-					async 
+				<Script
+					async
 					src="https://www.googletagmanager.com/gtag/js?id=G-5NCWJTM4N2"
 
 				></Script>
@@ -40,6 +40,11 @@ export default function RootLayout({
 				</Script>
 			</head>
 			<body className={poppins.className} style={{ scrollBehavior: "smooth" }}>
+				<noscript>
+					<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-J4LRVLR"
+						height="0" width="0" style={{ display:"none", visibility:"hidden" }}>
+					</iframe>
+				</noscript>
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="system"

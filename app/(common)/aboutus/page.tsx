@@ -8,11 +8,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Instagram, BringToFront, Target, Users, Rocket, RefreshCcw, LucideIcon } from 'lucide-react';
 import SmoothScroll from '@/components/smoothscroll';
+import abhinav from "./images/abhinav.jpeg";
+// import harsh from "./images/harsh";
 import nirajjha from "./images/nirajjha (copy).jpeg";
 import tejasvi from "./images/tejasvi.jpg";
 import ansh from "./images/ansh.jpg"
 import omsingh from "./images/omsingh.jpeg";
 import shelly from "./images/shelly.jpeg";
+import priyanshu from "./images/priyanshu.jpeg";
 import { RainbowButton } from '@/components/ui/rainbow-button';
 import { cn } from "@/app/lib/utils";
 import Marquee from "@/components/ui/marquee";
@@ -21,7 +24,7 @@ import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card'
 const theCoderzFamily = [
     {
         name: "V Abhinava Shankar",
-        img: nirajjha,
+        img: abhinav,
         role: "Management/Reasearch and Development",
         linkedin: "https://www.linkedin.com/in/abhinavashankar/",
         github: "https://github.com/AbhinavaShankar",
@@ -86,11 +89,11 @@ const theCoderzFamily = [
     },
     {
         name: "Priyanshu Singh",
-        img: nirajjha,
+        img: priyanshu,
         role: "App Development Team",
-        linkedin: "https://linkedin.com/in/janedoe",
-        github: "https://github.com/janedoe",
-        instagram: "https://instagram.com/janedoe",
+        linkedin: "https://www.linkedin.com/in/priyanshusingh-in",
+        github: "https://github.com/priyanshusingh-in",
+        instagram: "https://www.instagram.com/singh.sde",
         bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
     },
 ]
