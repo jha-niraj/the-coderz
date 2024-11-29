@@ -65,7 +65,7 @@ const PhpResourcePage = () => {
                                         <CardTitle>Important Viva Questions for ETP</CardTitle>
                                     </CardHeader>
                                     <CardContent>
-                                        <p className='text-center sm:text-left'>Prepare for your ETP viva with these crucial questions. Access a curated list of frequently asked viva questions for ETP.</p>
+                                        <p>Prepare for your ETP viva with these crucial questions. Access a curated list of frequently asked viva questions for ETP.</p>
                                     </CardContent>
                                 </div>
                                 <Button onClick={handleVivaQuestions}>
