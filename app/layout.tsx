@@ -8,6 +8,9 @@ import { ThemeProvider } from "@/components/themeprovider";
 import MainLayout from "./mainlayout";
 import { Toaster } from "@/components/ui/toaster";
 import Script from "next/script";
+import { Suspense } from "react";
+import GoogleAnalytics from "@/components/google-analytics";
+import CookieBanner from "@/components/cookie-banner";
 
 const poppins = Poppins({ subsets: ["latin"], weight: "300" });
 
@@ -23,31 +26,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<head>
-				<Script
-					id="my-script"
-					async
-					src="https://www.googletagmanager.com/gtag/js?id=G-5NCWJTM4N2"
-
-				></Script>
-				<Script
-					id="my-script"
-				>
-					{`
-					window.dataLayer = window.dataLayer || [];
-					function gtag(){dataLayer.push(arguments);}
-					gtag('js', new Date());
-
-					gtag('config', 'G-5NCWJTM4N2');
-				`}
-				</Script>
-			</head>
+			<Suspense fallback={null}>
+				<GoogleAnalytics GA_MEASUREMENT_ID={process.env.G_ANALYTICS_ID || ""} />
+			</Suspense>
 			<body className={poppins.className} style={{ scrollBehavior: "smooth" }}>
-				<noscript>
-					<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-J4LRVLR"
-						height="0" width="0" style={{ display:"none", visibility:"hidden" }}>
-					</iframe>
-				</noscript>
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="system"
@@ -65,6 +47,7 @@ export default function RootLayout({
 						</AppProvider>
 					</Providers>
 				</ThemeProvider>
+				<CookieBanner />
 			</body>
 		</html>
 	);
