@@ -457,7 +457,7 @@ const ProjectsPage: React.FC = () => {
                                         <ul className="text-gray-600 dark:text-white grid grid-cols-1 sm:grid-cols-2">
                                             {
                                                 selectedProject.resources.map((resource, index) => (
-                                                    <Link href={resource.link} className="text-blue-600 underline hover:border-2 hover:border-black p-2 hover:rounded-lg transition-all duration-300" target="_blank" rel="noopener noreferrer">
+                                                    <Link key={index} href={resource.link} className="text-blue-600 underline hover:border-2 hover:border-black p-2 hover:rounded-lg transition-all duration-300" target="_blank" rel="noopener noreferrer">
                                                         {resource.name}
                                                     </Link>
                                                 ))

@@ -12,7 +12,6 @@ import abhinav from "./images/abhinav.jpeg";
 // import harsh from "./images/harsh";
 import nirajjha from "./images/nirajjha (copy).jpeg";
 import tejasvi from "./images/tejasvi.jpg";
-import ansh from "./images/ansh.jpg"
 import omsingh from "./images/omsingh.jpeg";
 import shelly from "./images/shelly.jpeg";
 import priyanshu from "./images/priyanshu.jpeg";
@@ -64,7 +63,7 @@ const theCoderzFamily = [
     },
     {
         name: "Ansh Pratap Singh",
-        img: ansh,
+        img: nirajjha,
         role: "Social Media Team",
         linkedin: "https://www.linkedin.com/in/ansh-singh222",
         github: "https://github.com/ANSH200418",
