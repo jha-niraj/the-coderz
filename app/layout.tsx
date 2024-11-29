@@ -7,10 +7,7 @@ import ClientLayout from "./clientlayout";
 import { ThemeProvider } from "@/components/themeprovider";
 import MainLayout from "./mainlayout";
 import { Toaster } from "@/components/ui/toaster";
-import Script from "next/script";
-import { Suspense } from "react";
-import GoogleAnalytics from "@/components/google-analytics";
-import CookieBanner from "@/components/cookie-banner";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const poppins = Poppins({ subsets: ["latin"], weight: "300" });
 
@@ -26,9 +23,6 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<Suspense fallback={null}>
-				<GoogleAnalytics GA_MEASUREMENT_ID={process.env.G_ANALYTICS_ID || ""} />
-			</Suspense>
 			<body className={poppins.className} style={{ scrollBehavior: "smooth" }}>
 				<ThemeProvider
 					attribute="class"
@@ -47,7 +41,7 @@ export default function RootLayout({
 						</AppProvider>
 					</Providers>
 				</ThemeProvider>
-				<CookieBanner />
+				<GoogleAnalytics gaId="G-T0G3MPKNM8" />
 			</body>
 		</html>
 	);

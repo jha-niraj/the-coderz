@@ -73,7 +73,6 @@ export const units = [
     }
 ];
 
-
 export const lessonData = {
     'python_install_hello': {
         title: "Installing Python and Running 'Hello World'",

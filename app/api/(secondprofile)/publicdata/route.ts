@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "@/auth";
 import { getServerSession } from "next-auth";
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
     if(req.method !== "POST") {
         return NextResponse.json({ msg: "Method not allowed" }, { status: 501 });
     }
