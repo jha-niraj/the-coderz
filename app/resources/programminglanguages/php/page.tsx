@@ -52,7 +52,7 @@ const PhpResourcePage = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
-                    className="grid gap-6 grid-cols-1 md:grid-cols-2 rounded-lg p-6 mb-4"
+                    className="grid gap-6 grid-cols-1 md:grid-cols-2 rounded-lg p-3 sm:p-6 mb-4"
                 >
                     <ShineBorder
                         className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl"
@@ -65,7 +65,7 @@ const PhpResourcePage = () => {
                                         <CardTitle>Important Viva Questions for ETP</CardTitle>
                                     </CardHeader>
                                     <CardContent>
-                                        <p>Prepare for your ETP viva with these crucial questions. Access a curated list of frequently asked viva questions for ETP.</p>
+                                        <p className='text-center sm:text-left'>Prepare for your ETP viva with these crucial questions. Access a curated list of frequently asked viva questions for ETP.</p>
                                     </CardContent>
                                 </div>
                                 <Button onClick={handleVivaQuestions}>

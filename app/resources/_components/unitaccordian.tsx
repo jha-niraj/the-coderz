@@ -105,13 +105,12 @@ const UnitAccordion: React.FC<UnitAccordionProps> = ({ unit, unitIndex, lessonDa
                                                 Video
                                             </Button>
                                         </Link>
-                                        <Link href={unit.quizlink} target="_blank">
+                                        <Link href="#" className="w-full flex items-center justify-end sm:w-auto">
                                             <Button variant="outline" size="sm">
                                                 <FileText className="mr-2 h-4 w-4" />
                                                 Quiz
                                             </Button>
                                         </Link>
-
                                     </div>
                                 </div>
                             </CardHeader>

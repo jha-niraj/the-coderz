@@ -9,11 +9,12 @@ import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Instagram, BringToFront, Target, Users, Rocket, RefreshCcw, LucideIcon } from 'lucide-react';
 import SmoothScroll from '@/components/smoothscroll';
 import abhinav from "./images/abhinav.jpeg";
-// import harsh from "./images/harsh";
+import harsh from "./images/harsh.jpeg";
 import nirajjha from "./images/nirajjha (copy).jpeg";
 import tejasvi from "./images/tejasvi.jpg";
 import omsingh from "./images/omsingh.jpeg";
 import shelly from "./images/shelly.jpeg";
+import ansh from "./images/ansh.jpeg";
 import priyanshu from "./images/priyanshu.jpeg";
 import { RainbowButton } from '@/components/ui/rainbow-button';
 import { cn } from "@/app/lib/utils";
@@ -31,11 +32,11 @@ const theCoderzFamily = [
     },
     {
         name: "Harsh Pandey",
-        img: nirajjha,
+        img: harsh,
         role: "Public Relations Head",
-        linkedin: "https://linkedin.com/in/janedoe",
-        github: "https://github.com/janedoe",
-        instagram: "https://instagram.com/janedoe"
+        linkedin: "https://www.linkedin.com/in/harsh-pandey0504",
+        github: "https://github.com/HarshPandey-5804",
+        instagram: "https://www.instagram.com/just._.harsh__/"
     },
     {
         name: "Niraj Jha",
@@ -63,20 +64,19 @@ const theCoderzFamily = [
     },
     {
         name: "Ansh Pratap Singh",
-        img: nirajjha,
+        img: ansh,
         role: "Social Media Team",
         linkedin: "https://www.linkedin.com/in/ansh-singh222",
         github: "https://github.com/ANSH200418",
         instagram: "https://www.instagram.com/_ansh__45?igsh=YXQ3NTllaTI4c2Nj"
     },
     {
-        name: "Sangam",
+        name: "Sangam Kumar",
         img: nirajjha,
         role: "Social Media and Content Strategist",
-        linkedin: "https://linkedin.com/in/janedoe",
-        github: "https://github.com/janedoe",
-        instagram: "https://instagram.com/janedoe",
-        bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
+        linkedin: "https://www.linkedin.com/in/sangam-kumar-09578226a/",
+        github: "https://github.com/kumarSangam100",
+        instagram: "https://instagram.com/janedoe"
     },
     {
         name: "Om Singh",
@@ -115,15 +115,15 @@ const TheCoderZFamily = ({
 }: TheCoderZFamilyProps) => {
     return (
         <CardContainer className="inter-var w-full">
-            <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] h-[200px] w-full rounded-xl p-6 border">
-                <div className="flex flex-row items-center gap-6 h-full">
-                    {/* <CardItem translateZ="100" className="flex-shrink-0">
+            <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] h-[200px] w-full rounded-xl p-2 border">
+                <div className="flex flex-row items-center gap-3 h-full">
+                    {/* <CardItem translateZ="100" className="">
                         <Image
                             src={img}
                             width={100}
                             height={100}
                             alt={`${name}'s profile picture`}
-                            className="rounded-full object-cover group-hover/card:shadow-xl w-[100px] h-[100px]"
+                            className="rounded-full object-cover group-hover/card:shadow-xl w-[120px] h-[120px]"
                         />
                     </CardItem> */}
                     <div className="flex flex-col justify-between flex-grow gap-6">
