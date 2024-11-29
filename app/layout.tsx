@@ -7,7 +7,6 @@ import ClientLayout from "./clientlayout";
 import { ThemeProvider } from "@/components/themeprovider";
 import MainLayout from "./mainlayout";
 import { Toaster } from "@/components/ui/toaster";
-import { GoogleAnalytics } from '@next/third-parties/google'
 
 const poppins = Poppins({ subsets: ["latin"], weight: "300" });
 
@@ -41,7 +40,6 @@ export default function RootLayout({
 						</AppProvider>
 					</Providers>
 				</ThemeProvider>
-				<GoogleAnalytics gaId="G-T0G3MPKNM8" />
 			</body>
 		</html>
 	);
