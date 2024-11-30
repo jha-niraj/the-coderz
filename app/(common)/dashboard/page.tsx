@@ -1,7 +1,6 @@
 "use client"
 
 import { useSession } from "next-auth/react";
-import DashboardPage from "./_components/studentDashboard";
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Construction, Github, FileCode, User } from 'lucide-react';
@@ -17,20 +16,13 @@ export default function Dashboard() {
     const { data: session, status } = useSession();
     const role = session?.user?.role;
 
-    if(!session || !session?.user) {
-        redirect("/");
+    if (session && session?.user?.role === "Admin") {
+        redirect("/admin");
     }
 
     return (
         <SmoothScroll>
-            {
-                role === "Student" &&
-                    <StudentDashboard />
-            }
-            {
-                role === "Admin" && 
-                    <AdminDashbaord />
-            }
+            <StudentDashboard />
         </SmoothScroll>
     )
 }
