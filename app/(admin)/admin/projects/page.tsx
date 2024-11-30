@@ -97,11 +97,11 @@ export default async function AdminProjectsPage() {
                     </TableHeader>
                     <TableBody>
                         {
-                            projectsData && projectsData.map((project, index: number) => (
+                            projects && projects.map((project, index: number) => (
                                 <TableRow key={project.id}>
                                     <TableCell>{index + 1}</TableCell>
                                     <TableCell className="font-medium">{project.projectId}</TableCell>
-                                    {/* <TableCell>{project.user.name}</TableCell> */}
+                                    <TableCell>{project.user.name}</TableCell>
                                     <TableCell>{project?.submissionDate?.toLocaleDateString()}</TableCell>
                                     <TableCell>
                                         {

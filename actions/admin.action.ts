@@ -24,9 +24,9 @@ export async function getUsersCount() {
 export async function getUsersDetails(role: Role) {
     try {
         return await prisma.user.findMany({
-            where: { 
+            where: {
                 role
-             },
+            },
             select: {
                 id: true,
                 name: true,
@@ -83,15 +83,62 @@ export const updateVerification = async (id: any) => {
 };
 
 // Projects related API Calls:
-export const getSubmittedProjectsCounts = async() => {
+export const getSubmittedProjectsCounts = async () => {
     try {
-        return await prisma.projects.count({});
+        return await prisma.projects.count({
+            where: {
+                isSubmitted: true,
+            }
+        });
     } catch (err: any) {
-        console.error("Error Occurred while getting the projects count", err);
-        return err;
+        console.error("Error Occurred while getting the submitted projects count", err);
+        return 0;
     }
 }
-export const getSubmittedProjects = async() => {
+export const getApprovedProjectsCounts = async () => {
+    try {
+        return await prisma.projects.count({
+            where: {
+                isApproved: true
+            }
+        });
+    } catch (err: any) {
+        console.error("Error Occurred while getting the approved projects count", err);
+        return 0;
+    }
+}
+export const getProjectsCounts = async () => {
+    try {
+        const [submitted, approved, total] = await Promise.all([
+            prisma.projects.count({
+                where: {
+                    isSubmitted: true,
+                }
+            }),
+            prisma.projects.count({
+                where: {
+                    isApproved: true
+                }
+            }),
+            prisma.projects.count({})
+        ]);
+
+        return {
+            submitted,
+            approved,
+            total
+        };
+    } catch (err: any) {
+        console.error("Error occurred while getting project counts", err);
+        return {
+            submitted: 0,
+            approved: 0,
+            total: 0
+        };
+    }
+}
+
+export const getSubmittedProjects = async () => {
     try {
         const projects = await prisma.projects.findMany({
             where: {
@@ -100,7 +147,7 @@ export const getSubmittedProjects = async() => {
         })
         console.log(projects);
         return projects;
-    } catch(err: any) {
+    } catch (err: any) {
         console.error("Error Fetching Projects:", err);
     }
 }
@@ -114,8 +161,8 @@ export async function approveProject(projectId: string) {
                 isApproved: true
             }
         })
-        return { success : true };
-    } catch(err: any) {
+        return { success: true };
+    } catch (err: any) {
         console.error("Error Approving Projects:", err);
     }
 }
