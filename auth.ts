@@ -49,6 +49,7 @@ export const authOptions: NextAuthOptions = {
                     email: user.email,
                     name: user?.name,
                     image: user?.image,
+                    role: user?.role
                 };
             }
         }),
@@ -67,7 +68,7 @@ export const authOptions: NextAuthOptions = {
     },
     pages: {
         signIn: '/signin',
-        error: '/auth/error',
+        error: '/error',
     },
     callbacks: {
         async redirect({ url, baseUrl }) {
@@ -83,6 +84,7 @@ export const authOptions: NextAuthOptions = {
                 token.name = user.name;
                 token.email = user.email;
                 token.image = user.image;
+                token.role = user.role;
             }
             return token;
         },
@@ -92,6 +94,7 @@ export const authOptions: NextAuthOptions = {
                 session.user.name = token.name;
                 session.user.email = token.email;
                 session.user.image = token.image;
+                session.user.role = token.role;
             }
             return session;
         }

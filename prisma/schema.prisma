@@ -13,13 +13,19 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+enum Role {
+    Student
+    Admin
+}
+
 model User {
-    id                	String    @id @default(uuid())
+    id                	String      @id @default(uuid())
     name              	String?
-    email             	String    @unique
-    emailVerified     	Boolean?  @default(false)
+    email             	String      @unique
+    emailVerified     	Boolean?    @default(false)
     hashedPassword    	String?
-    image             	String?   @default("https://tse4.mm.bing.net/th?id=OIP.-BS8Y2nH1k93GJiitUVBCAHaHa&pid=Api&P=0")
+    image             	String?     @default("https://tse4.mm.bing.net/th?id=OIP.-BS8Y2nH1k93GJiitUVBCAHaHa&pid=Api&P=0")
+    role                Role        @default(Student)
     gender            	String?
     phone             	String?
     yearofbirth       	String?
@@ -39,7 +45,6 @@ model User {
     resetToken        	String?
     restTokenExpiry   	DateTime?
     createdAt         	DateTime  @default(now())
-    isAdmin           	Boolean   @default(false)
 
 	projects			Projects[]
     proofofwork 		ProofOfWork[]

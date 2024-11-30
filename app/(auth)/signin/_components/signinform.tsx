@@ -24,13 +24,13 @@ export default function SignInForm() {
 
 	useEffect(() => {
 		if(status === "authenticated") {
-			router.push("/profile");
+			router.push("/dashboard");
 		}
 	}, [router, session, status]);
 
 	const handleSignInWithGoogle = async() => {
 		try {
-			const callback = await signIn("google", { callbackUrl: "/profile" });
+			const callback = await signIn("google", { callbackUrl: "/dashboard" });
 
 			if(callback?.error) {
 				toast.error("Email not registered");
@@ -68,7 +68,7 @@ export default function SignInForm() {
 		if(response?.ok && !response?.error) {
 			setIsSubmitting(false);
 			toast.success("Logged in Successfully");
-			router.push("/profile");
+			router.push("/dashboard");
 		}
 	};
 

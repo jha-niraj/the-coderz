@@ -49,7 +49,7 @@ export default function SignUpForm() {
     useEffect(() => {
         if (session?.user) {
             toast.success("Logged in Successfully");
-            router.push("/profile");
+            router.push("/dashboard");
         }
     }, [session, router]);
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -73,7 +73,7 @@ export default function SignUpForm() {
                     toast.error(callback.error);
                 } else if (callback?.ok) {
                     toast.success("Logged in Successfully");
-                    router.push("/profile");
+                    router.push("/dashboard");
                 }
             } else {
                 console.log("Failed to submit form");
