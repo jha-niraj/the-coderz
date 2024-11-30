@@ -727,7 +727,7 @@ export default function Home() {
                                 <SheetContent
                                     side="right"
                                     className="w-full h-full sm:w-[80vw] md:w-[40vw] sm:max-w-[80vw] p-6 overflow-y-auto"
-                                    style={{ maxWidth: '60vw' }}
+                                    style={{ maxWidth: '90vw' }}
                                 >
                                     <SheetHeader>
                                         <SheetTitle>Edit Private Info</SheetTitle>
