@@ -21,17 +21,15 @@ const theCoderzFamily = [
         role: "Management / Reasearch and Development",
         linkedin: "https://linkedin.com/in/janedoe",
         github: "https://github.com/janedoe",
-        instagram: "https://instagram.com/janedoe",
-        bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
+        instagram: "https://instagram.com/janedoe"
     },
     {
         name: "Harsh Pandey",
         img: teamImage,
         role: "Public Relations Head",
-        linkedin: "https://linkedin.com/in/janedoe",
-        github: "https://github.com/janedoe",
-        instagram: "https://instagram.com/janedoe",
-        bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
+        linkedin: "https://www.linkedin.com/in/harsh-pandey0504/",
+        github: "https://github.com/HarshPandey-5804",
+        instagram: "https://www.instagram.com/just._.harsh__/"
     },
     {
         name: "Niraj Jha",
@@ -39,8 +37,7 @@ const theCoderzFamily = [
         role: "Lead Developer",
         linkedin: "https://linkedin.com/in/janedoe",
         github: "https://github.com/jha-niraj",
-        instagram: "https://instagram.com/janedoe",
-        bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
+        instagram: "https://instagram.com/janedoe"
     },
     {
         name: "Tejasvi Sinha",
