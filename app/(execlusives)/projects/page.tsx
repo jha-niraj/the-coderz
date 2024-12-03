@@ -79,7 +79,7 @@ const ProjectsPage: React.FC = () => {
             variant: "default"
         });
     }
-    const handleProjectStart = async (id: string) => {
+    const handleProjectStart = async (id: string, projectName: string) => {
         toast({
             title: "Coming Soon...",
             description: "We are working on this features which enables you to start a projects that will be added to your dashboard and will be evaluated by us.",
@@ -89,7 +89,7 @@ const ProjectsPage: React.FC = () => {
         // setStartingProject(true);
 
         // try {
-        //     const response = await axios.post("/api/projectstart", { id }, {
+        //     const response = await axios.post("/api/projectstart", { id, session?.user?.name, projectName }, {
         //         headers: {
         //             "Content-Type": "application/json"
         //         }
@@ -117,7 +117,11 @@ const ProjectsPage: React.FC = () => {
     }
 
     return (
-        <section>
+        <motion.section
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
+        >
             <div className="min-h-screen flex flex-col gap-16 text-black dark:text-white pt-28 sm:pt-32">
                 <header className="max-w-7xl mx-auto flex flex-col gap-16">
                     <div className="flex items-center justify-center w-full">
@@ -150,7 +154,12 @@ const ProjectsPage: React.FC = () => {
                                     <span className="text-xs sm:text-sm text-black dark:text-white">Join 100+ developers building projects</span>
                                 </div>
                             </div>
-                            <div className="w-full md:w-1/2 h-full flex justify-center md:justify-end">
+                            <motion.div 
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
+                                className="w-full md:w-1/2 h-full flex justify-center md:justify-end"
+                            >
                                 <Image
                                     src={projectMainImage}
                                     alt="Project Main Image"
@@ -158,13 +167,18 @@ const ProjectsPage: React.FC = () => {
                                     width={300}
                                     className="w-full rounded-2xl"
                                 />
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
                     <div className="max-w-7xl mx-auto px-4">
                         <h2 className="text-2xl font-bold text-center mb-8">Why do projects?</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            <div className="flex flex-col items-center p-6 border rounded-lg shadow-sm">
+                            <motion.div
+                                initial={{ opacity: 0, y: -20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
+                                className="flex flex-col items-center p-6 border rounded-lg shadow-sm"
+                            >
                                 <div className="text-purple-600 mb-4">
                                     <Image
                                         className='w-20'
@@ -178,8 +192,13 @@ const ProjectsPage: React.FC = () => {
                                 <p className="text-center text-black dark:text-white">
                                     Kickstart your career by building stellar proof of work
                                 </p>
-                            </div>
-                            <div className="flex flex-col items-center p-6 border rounded-lg shadow-sm">
+                            </motion.div>
+                            <motion.div 
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
+                                className="flex flex-col items-center p-6 border rounded-lg shadow-sm"
+                            >
                                 <div className="text-green-600 mb-4">
                                     <Image
                                         className='w-16'
@@ -193,8 +212,13 @@ const ProjectsPage: React.FC = () => {
                                 <p className="text-center text-black dark:text-white">
                                     Upskill by building hands-on projects with stepwise guidance
                                 </p>
-                            </div>
-                            <div className="flex flex-col items-center p-6 border rounded-lg shadow-sm" id="project_section">
+                            </motion.div>
+                            <motion.div 
+                                initial={{ opacity: 0, y: -20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
+                                className="flex flex-col items-center p-6 border rounded-lg shadow-sm" id="project_section"
+                            >
                                 <div className="text-yellow-600 mb-4">
                                     <Image
                                         className='w-20'
@@ -208,7 +232,7 @@ const ProjectsPage: React.FC = () => {
                                 <p className="text-center text-black dark:text-white">
                                     Grow with the community and get feedback from mentors
                                 </p>
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
                 </header>
@@ -482,7 +506,7 @@ const ProjectsPage: React.FC = () => {
                                         </Link>
                                         <ShimmerButton
                                             className="w-full"
-                                            onClick={() => handleProjectStart(selectedProject?.id)}
+                                            onClick={() => handleProjectStart(selectedProject?.id, selectedProject?.title)}
                                         >
                                             {
                                                 startingProject ? "Starting Project" : "Start Building"
@@ -495,7 +519,7 @@ const ProjectsPage: React.FC = () => {
                     </SheetContent>
                 </Sheet>
             </div>
-        </section>
+        </motion.section>
     );
 };
 

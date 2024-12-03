@@ -80,7 +80,7 @@ export default function Navbar({ className }: { className?: string }) {
                             :
                             ""
                     }
-                    <Link href="/aboutus" className="hover:scale-105">
+                    <Link href="/aboutus" className="hover:scale-105 hidden lg:flex">
                         About Us
                     </Link>
                     <Link href="/communities" className="hover:scale-105">

@@ -33,8 +33,8 @@ const Footer = () => {
                             <Link href="https://x.com/coderzofficial" target="_blank" className="hover:text-blue-400 transition-colors">
                                 <Image
                                     src={twitterLogo}
-                                    height={30}
-                                    width={30}
+                                    height={55}
+                                    width={55}
                                     alt="Twitter Logo"
                                 />
                             </Link>

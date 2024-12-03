@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { redirect, useRouter } from "next/navigation";
 import AdminDashbaord from "@/app/(admin)/admin/page";
 import StudentDashboard from "./_components/studentDashboard";
+import DashboardPage from "./_components/dashboard";
 
 export default function Dashboard() {
     const { data: session, status } = useSession();
@@ -22,7 +23,8 @@ export default function Dashboard() {
 
     return (
         <SmoothScroll>
-            <StudentDashboard />
+            {/* <StudentDashboard /> */}
+            <DashboardPage />
         </SmoothScroll>
     )
 }

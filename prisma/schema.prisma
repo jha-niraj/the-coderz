@@ -77,7 +77,9 @@ model Account {
 model Projects {
 	id 				String 	 @id	@default(uuid())
 	userId			String
+    submittedBy     String
 	projectId		String
+    projectName     String
 	githubUrl		String?
 	liveUrl			String?
 	isSubmitted		Boolean			@default(false)
