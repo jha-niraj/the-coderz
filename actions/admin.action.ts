@@ -5,13 +5,15 @@ import { prisma } from "@/app/lib/prisma";
 // import { getUserByEmail } from "@/app/data/user";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/auth";
+import { Role } from "@prisma/client";
 
 interface UserRegistration {
     date: string;
     count: number;
 }
 
-export async function getMenteeCount() {
+// User related API calls:
+export async function getUsersCount() {
     try {
         return await prisma.user.count({});
     } catch (err: any) {
@@ -19,61 +21,16 @@ export async function getMenteeCount() {
         return err;
     }
 }
-
-// export async function getMentorCount() {
-//     try {
-//         return await prisma.user.count({ where: { role: "MENTOR" } });
-//     } catch (err: any) {
-//         console.error("Error Occurred while getting the mentor count", err);
-//         return err;
-//     }
-// }
-
-// export async function mentorList() {
-//     const session = await getServerSession(authOptions);
-//     if (!session) return null;
-
-//     const email = session?.user?.email;
-//     const currentUser = await getUserByEmail(email);
-
-//     if (!currentUser || !currentUser?.email) {
-//         return;
-//     }
-
-//     try {
-//         const mentorList = await prisma.user.findMany({
-//             where: {
-//                 role: "MENTOR",
-//                 interestedIn: currentUser?.interestedIn,
-//             },
-//         });
-//         return mentorList;
-//     } catch (err: any) {
-//         console.log("Error Occurred in Mentor List: " + err);
-//         return err;
-//     }
-// }
-
-// export async function getHrCount() {
-//     try {
-//         return await prisma.user.count({ where: { role: "HR" } });
-//     } catch (err: any) {
-//         console.error("Error Occurred while getting the HR count", err);
-//         throw new Error("Failed to get HR count");
-//     }
-// }
-
-export async function getMenteeDetails(email: string) {
+export async function getUsersDetails(role: Role) {
     try {
         return await prisma.user.findMany({
-            where: { 
-                email: email
-             },
+            where: {
+                role
+            },
             select: {
                 id: true,
                 name: true,
                 email: true,
-                // interestedIn: true,
             },
         });
     } catch (err: any) {
@@ -81,168 +38,18 @@ export async function getMenteeDetails(email: string) {
         return err;
     }
 }
-// export async function getMentorDetails() {
-//     try {
-//         return await prisma.user.findMany({
-//             where: { role: "MENTOR" },
-//             select: {
-//                 id: true,
-//                 name: true,
-//                 email: true,
-//                 interestedIn: true,
-//             },
-//         });
-//     } catch (err: any) {
-//         console.error("Error Occurred while getting the mentors", err);
-//         return err;
-//     }
-// }
-
-// export async function getMenteeDetailsById(id: string, role: Role) {
-//     try {
-//         const mentee = await prisma.user.findFirst({
-//             where: { id, role },
-//         });
-//         if (!mentee) throw new Error("Mentee not found");
-//         console.log("Mentee is: ", mentee);
-//         return mentee;
-//     } catch (err: any) {
-//         console.error("Failed to fetch mentee details by id", err);
-//         return err;
-//     }
-// }
-
-// export async function getMenteeRegistrations(): Promise<UserRegistration[]> {
-//     try {
-//         const userRegistrations = await prisma.user.groupBy({
-//             by: ["createdAt", "role"],
-//             where: {
-//                 role: "MENTEE",
-//             },
-//             _count: {
-//                 _all: true,
-//             },
-//             orderBy: {
-//                 createdAt: "asc",
-//             },
-//         });
-
-//         const dateCountMap: Record<string, number> = userRegistrations.reduce(
-//             (acc: Record<string, number>, { createdAt, _count }) => {
-//                 const date = createdAt!.toISOString().slice(0, 10);
-//                 if (!acc[date]) {
-//                     acc[date] = 0;
-//                 }
-//                 acc[date] += _count._all;
-//                 return acc;
-//             },
-//             {}
-//         );
-
-//         const formattedData: UserRegistration[] = Object.keys(dateCountMap).map(
-//             (date) => ({
-//                 date,
-//                 count: dateCountMap[date],
-//             })
-//         );
-
-//         formattedData.sort(
-//             (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-//         );
-
-//         revalidatePath("/dashboard");
-
-//         return formattedData;
-//     } catch (err: any) {
-//         console.error("Failed to fetch user registrations:", err);
-//         return err;
-//     }
-// }
-
-// export async function getMentorRegistrations(): Promise<UserRegistration[]> {
-//     try {
-//         const userRegistrations = await prisma.user.groupBy({
-//             by: ["createdAt", "role"],
-//             where: {
-//                 role: "MENTOR",
-//             },
-//             _count: {
-//                 _all: true,
-//             },
-//             orderBy: {
-//                 createdAt: "asc",
-//             },
-//         });
-
-//         const dateCountMap: Record<string, number> = userRegistrations.reduce(
-//             (acc: Record<string, number>, { createdAt, _count }) => {
-//                 const date = createdAt!.toISOString().slice(0, 10);
-//                 if (!acc[date]) {
-//                     acc[date] = 0;
-//                 }
-//                 acc[date] += _count?._all;
-//                 return acc;
-//             },
-//             {}
-//         );
-
-//         const formattedData: UserRegistration[] = Object.keys(dateCountMap).map(
-//             (date) => ({
-//                 date,
-//                 count: dateCountMap[date],
-//             })
-//         );
-
-//         formattedData.sort(
-//             (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-//         );
-
-//         revalidatePath("/dashboard");
-
-//         return formattedData;
-//     } catch (err: any) {
-//         console.error("Failed to fetch user registrations:", err);
-//         return err;
-//     }
-// }
-
-// export async function getMentorRequests() {
-//     try {
-//         const response = await prisma.user.findMany({
-//             where: {
-//                 role: "MENTOR",
-//                 emailVerified: false,
-//             },
-//             select: {
-//                 id: true,
-//                 name: true,
-//                 image: true,
-//                 tagline: true,
-//             },
-//         });
-//         console.log(response);
-//         return response;
-//     } catch (err: any) {
-//         console.error("Failed to fetch mentor requests", err);
-//         return err;
-//     }
-// }
-
-// export async function getMentorDetailsById(id: any) {
-//     try {
-//         console.log("Id is: ", id);
-//         const mentor = await prisma.user.findFirst({
-//             where: { id }
-//         });
-//         if (!mentor) throw new Error("Mentor not found");
-//         console.log("Mentor is: ", mentor);
-//         return mentor;
-//     } catch (err: any) {
-//         console.error('Failed to fetch mentor details by id', err);
-//         return err;
-//     }
-// }
-
+export async function getUserDetailsById(id: string, role: Role) {
+    try {
+        const mentee = await prisma.user.findFirst({
+            where: { id, role },
+        });
+        if (!mentee) throw new Error("Mentee not found");
+        return mentee;
+    } catch (err: any) {
+        console.error("Failed to fetch mentee details by id", err);
+        return err;
+    }
+}
 export async function deleteUserById(id: any) {
     try {
         const deletedUser = await prisma.user.delete({
@@ -255,7 +62,6 @@ export async function deleteUserById(id: any) {
         return err;
     }
 }
-
 export const updateVerification = async (id: any) => {
     try {
         const updatedUser = await prisma.user.update({
@@ -266,7 +72,6 @@ export const updateVerification = async (id: any) => {
                 emailVerified: true,
             },
         });
-        // console.log(updatedUser);
         return { success: true };
     } catch (error) {
         console.log(error);
@@ -276,3 +81,88 @@ export const updateVerification = async (id: any) => {
         };
     }
 };
+
+// Projects related API Calls:
+export const getSubmittedProjectsCounts = async () => {
+    try {
+        return await prisma.projects.count({
+            where: {
+                isSubmitted: true,
+            }
+        });
+    } catch (err: any) {
+        console.error("Error Occurred while getting the submitted projects count", err);
+        return 0;
+    }
+}
+export const getApprovedProjectsCounts = async () => {
+    try {
+        return await prisma.projects.count({
+            where: {
+                isApproved: true
+            }
+        });
+    } catch (err: any) {
+        console.error("Error Occurred while getting the approved projects count", err);
+        return 0;
+    }
+}
+export const getProjectsCounts = async () => {
+    try {
+        const [submitted, approved, total] = await Promise.all([
+            prisma.projects.count({
+                where: {
+                    isSubmitted: true,
+                }
+            }),
+            prisma.projects.count({
+                where: {
+                    isApproved: true
+                }
+            }),
+            prisma.projects.count({})
+        ]);
+
+        return {
+            submitted,
+            approved,
+            total
+        };
+    } catch (err: any) {
+        console.error("Error occurred while getting project counts", err);
+        return {
+            submitted: 0,
+            approved: 0,
+            total: 0
+        };
+    }
+}
+
+export const getSubmittedProjects = async () => {
+    try {
+        const projects = await prisma.projects.findMany({
+            where: {
+                isSubmitted: true
+            }
+        })
+        console.log(projects);
+        return projects;
+    } catch (err: any) {
+        console.error("Error Fetching Projects:", err);
+    }
+}
+export async function approveProject(projectId: string) {
+    try {
+        await prisma.projects.update({
+            where: {
+                id: projectId
+            },
+            data: {
+                isApproved: true
+            }
+        })
+        return { success: true };
+    } catch (err: any) {
+        console.error("Error Approving Projects:", err);
+    }
+}

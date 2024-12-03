@@ -76,7 +76,7 @@ export const units = [
 
 export const lessonData = {
     "data_preprocessing": {
-        title: "Unit I: DATA PREPROCESSING",
+        title: "Unit I: Data Pre-Processing",
         description: "Learn how to preprocess data for machine learning by managing, exploring, and understanding data.",
         sections: [
             {
@@ -141,9 +141,8 @@ plot(data$numeric_var1, data$numeric_var2, main="Scatter Plot of Variables")`
             }
         ]
     },
-
     "supervised_learning_classification": {
-        title: "Unit II: SUPERVISED LEARNING: CLASSIFICATION",
+        title: "Unit II: Supervised Learning: Classification",
         description: "Learn about classification techniques in supervised learning, focusing on algorithms like k-nearest neighbors and decision trees.",
         sections: [
             {
@@ -223,9 +222,8 @@ predictions = tree.predict(X_test)  # Make predictions`
             }
         ]
     },
-
     "supervised_learning_numeric_prediction": {
-        title: "Unit III: SUPERVISED LEARNING: NUMERIC PREDICTION",
+        title: "Unit III: Supervised Learning: Numeric Prediction",
         description: "Learn about numeric prediction using techniques like linear regression and polynomial regression.",
         sections: [
             {
