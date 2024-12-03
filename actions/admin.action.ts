@@ -83,30 +83,30 @@ export const updateVerification = async (id: any) => {
 };
 
 // Projects related API Calls:
-export const getSubmittedProjectsCounts = async () => {
-    try {
-        return await prisma.projects.count({
-            where: {
-                isSubmitted: true,
-            }
-        });
-    } catch (err: any) {
-        console.error("Error Occurred while getting the submitted projects count", err);
-        return 0;
-    }
-}
-export const getApprovedProjectsCounts = async () => {
-    try {
-        return await prisma.projects.count({
-            where: {
-                isApproved: true
-            }
-        });
-    } catch (err: any) {
-        console.error("Error Occurred while getting the approved projects count", err);
-        return 0;
-    }
-}
+// export const getSubmittedProjectsCounts = async () => {
+//     try {
+//         return await prisma.projects.count({
+//             where: {
+//                 isSubmitted: true,
+//             }
+//         });
+//     } catch (err: any) {
+//         console.error("Error Occurred while getting the submitted projects count", err);
+//         return 0;
+//     }
+// }
+// export const getApprovedProjectsCounts = async () => {
+//     try {
+//         return await prisma.projects.count({
+//             where: {
+//                 isApproved: true
+//             }
+//         });
+//     } catch (err: any) {
+//         console.error("Error Occurred while getting the approved projects count", err);
+//         return 0;
+//     }
+// }
 export const getProjectsCounts = async () => {
     try {
         const [submitted, approved, total] = await Promise.all([

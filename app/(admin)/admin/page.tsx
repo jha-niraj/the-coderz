@@ -7,7 +7,7 @@ import { User } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { getApprovedProjectsCounts, getProjectsCounts, getSubmittedProjectsCounts, getUsersCount } from "@/actions/admin.action";
+import { getProjectsCounts, getUsersCount } from "@/actions/admin.action";
 
 interface ProjectCountProps {
     submittedProjects: number;
@@ -16,8 +16,6 @@ interface ProjectCountProps {
 }
 const AdminDashboard = () => {
     const [userCount, setUserCount] = useState<number>(0);
-    const [submittedProjectCount, setSubmittedProjectCount] = useState<number>(0);
-    const [approvedProjectCount, setApprovedProjectCount] = useState<number>(0);
     const [projectCount, setProjectCount] = useState<ProjectCountProps>({
         submittedProjects: 0,
         approvedProjects: 0,
@@ -54,13 +52,9 @@ const AdminDashboard = () => {
     useEffect(() => {
         const fetchData = async () => {
             const userCountData = await getUsersCount();
-            const submittedProjectCountData = await getSubmittedProjectsCounts();
-            const approvedProjectCountData = await getApprovedProjectsCounts();
             const projectCounts = await getProjectsCounts();
 
             setUserCount(userCountData);
-            setSubmittedProjectCount(submittedProjectCountData);
-            setApprovedProjectCount(approvedProjectCountData);
             setProjectCount({
                 submittedProjects: projectCounts.submitted,
                 approvedProjects: projectCounts.approved,
