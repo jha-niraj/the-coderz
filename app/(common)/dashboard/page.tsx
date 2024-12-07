@@ -14,16 +14,16 @@ import StudentDashboard from "./_components/studentDashboard";
 import DashboardPage from "./_components/dashboard";
 
 export default function Dashboard() {
-    const { data: session, status } = useSession();
-    const role = session?.user?.role;
+    const session = useSession();
+    const role = session?.data?.user?.role;
 
-    if (session && session?.user?.role === "Admin") {
+    if (session && session?.data?.user?.role === "Admin") {
         redirect("/admin");
     }
 
     return (
         <SmoothScroll>
-            {/* <StudentDashboard /> */}
+            <StudentDashboard />
             <DashboardPage />
         </SmoothScroll>
     )

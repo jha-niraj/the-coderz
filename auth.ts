@@ -4,11 +4,11 @@ import GoogleProvider from "next-auth/providers/google";
 import { prisma } from "./app/lib/prisma";
 import bcrypt from "bcrypt";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { NextAuthOptions } from "next-auth";
+import NextAuth from "next-auth";
 import { Adapter } from "next-auth/adapters";
 import { JWT } from "next-auth/jwt";
 
-export const authOptions: NextAuthOptions = {
+export const { auth, handlers, signIn, signOut } = NextAuth({
     adapter: PrismaAdapter(prisma) as Adapter,
     providers: [
         CredentialsProvider({
@@ -27,9 +27,10 @@ export const authOptions: NextAuthOptions = {
                 if (!credentials || !credentials.email || !credentials.password) {
                     throw new Error("Please enter an email and password");
                 }
-
+                
                 const user = await prisma.user.findUnique({
                     where: {
+                        // @ts-ignore
                         email: credentials?.email
                     }
                 })
@@ -37,8 +38,8 @@ export const authOptions: NextAuthOptions = {
                 if (!user) {
                     throw new Error("No user found with this credentials");
                 }
-
-                const passwordMatch = await bcrypt.compare(credentials?.password, user?.hashedPassword!);
+                // @ts-ignore
+                const passwordMatch = bcrypt.compare(credentials?.password, user?.hashedPassword!);
 
                 if (!passwordMatch) {
                     throw new Error("Password incorrect");
@@ -99,4 +100,4 @@ export const authOptions: NextAuthOptions = {
             return session;
         }
     }
-}
+})

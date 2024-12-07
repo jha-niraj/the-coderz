@@ -2,9 +2,6 @@
 
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/app/lib/prisma";
-// import { getUserByEmail } from "@/app/data/user";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/auth";
 import { Role } from "@prisma/client";
 
 interface UserRegistration {

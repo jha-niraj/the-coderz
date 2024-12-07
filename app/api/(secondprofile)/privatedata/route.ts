@@ -1,14 +1,13 @@
 import { prisma } from "@/app/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
-import { authOptions } from "@/auth";
-import { getServerSession } from "next-auth";
+import { auth } from "@/auth";
 
 export async function POST(req: NextRequest) {
     if(req.method !== "POST") {
         return NextResponse.json({ msg: "Method not allowed" }, { status: 501 });
     }
 
-    const session = await getServerSession(authOptions);
+    const session = await auth();
 
     if (!session || !session?.user) {
         return NextResponse.json({ msg: "User is not authenticated" }, { status: 403 });

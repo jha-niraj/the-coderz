@@ -6,7 +6,13 @@ import { Badge } from "@/components/ui/badge"
 import { Calendar, Mail, Phone, MapPin, Github, Linkedin, Twitter, Globe, User, Key, Clock, GraduationCap, Heart, Code } from 'lucide-react'
 import { Separator } from "@/components/ui/separator";
 
-export default async function MenteeDetails({ params: { userid } }: { params: { userid: string } }) {
+export default async function MenteeDetails(props: { params: Promise<{ userid: string }> }) {
+    const params = await props.params;
+
+    const {
+        userid
+    } = params;
+
     const user = await getUserDetailsById(userid, "Student");
 
     return (

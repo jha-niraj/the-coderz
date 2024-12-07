@@ -60,7 +60,7 @@ export default function DashboardPage() {
                                     { title: "Active Streak", icon: Activity, value: "3 days" },
                                     { title: "Coder'z coin", icon: Activity, value: "10 Coins" },
                                 ].map((stat, index) => (
-                                    <div className={`flex flex-col items-center gap-4 ${index < 3 ? "border-r-8 border-green-200 rounded-lg" : ""}`}>
+                                    <div key={index} className={`flex flex-col items-center gap-4 ${index < 3 ? "border-r-8 border-green-200 rounded-lg" : ""}`}>
                                         <stat.icon size={40} className="" />
                                         <div className='flex items-center w-full justify-between pl-6 pr-6'>
                                             <h1 className="text-md font-bold">{stat.title}</h1>
