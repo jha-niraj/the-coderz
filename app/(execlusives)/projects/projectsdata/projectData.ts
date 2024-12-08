@@ -14,7 +14,7 @@ export const categories = [
 
 export const projectData = [
     {
-        "id": "1",
+        "id": "tasktracker",
         "title": "Task Tracker",
         "description": "Build a CLI app to track your tasks and manage your to-do list effectively.",
         "difficulty": "Intermediate" as DifficultyLevel,
@@ -64,7 +64,7 @@ export const projectData = [
         "category": "Beginner",
     },
     {
-        "id": "2",
+        "id": "weatherapp",
         "title": "Weather Web App",
         "description": "Create a weather app using APIs and JavaScript to display live weather information.",
         "difficulty": "Intermediate" as DifficultyLevel,
@@ -111,7 +111,7 @@ export const projectData = [
         "category": "Intermediate",
     },
     {
-        "id": "3",
+        "id": "githubrepofinder",
         "title": "GitHub Random Repository Finder",
         "description": "Create a project that fetches a random repository from the GitHub API.",
         "difficulty": "Intermediate" as DifficultyLevel,
@@ -155,7 +155,7 @@ export const projectData = [
         "category": "Intermediate",
     },
     {
-        "id": "4",
+        "id": "flashcard",
         "title": "Flash Card",
         "description": "Build a flash card app using JavaScript.",
         "difficulty": "Beginner" as DifficultyLevel,
@@ -199,7 +199,7 @@ export const projectData = [
         "category": "Beginner",
     },
     {
-        "id": "5",
+        "id": "portfoliowebsite",
         "title": "Portfolio Website",
         "description": "Create a personal portfolio website to showcase your projects and skills.",
         "difficulty": "Intermediate" as DifficultyLevel,

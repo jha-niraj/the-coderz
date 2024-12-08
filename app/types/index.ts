@@ -30,6 +30,20 @@ export interface ProjectModalProps {
     project: Project;
     onClose: () => void;
 }
+export interface UserProjectProps {
+    id: string;
+    userId: string;
+    submittedBy: string;
+    projectId: string;
+    projectName: string;
+    githubUrl?: string | null;
+    liveUrl?: string | null;
+    isSubmitted: boolean;
+    isApproved: boolean;
+    submissionDate?: Date | null;
+    createdAt: Date;
+    updatedAt: Date;
+}
 
 // Types for the Pathway Page:
 export type Pathway = {

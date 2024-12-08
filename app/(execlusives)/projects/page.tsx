@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { categories, projectData } from './projectsdata/projectData';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
@@ -21,6 +21,7 @@ import Link from 'next/link';
 import projectMainImage from "./a_group_of_college_students_including_3.jpeg";
 import ShimmerButton from '@/components/ui/shimmer-button';
 import axios from 'axios';
+import { userProjectList } from '@/actions/project.action';
 
 type DifficultyLevel = "All" | "Beginner" | "Intermediate" | "Advanced";
 
@@ -45,7 +46,13 @@ interface Project {
     image: string | null;
     category: string;
 }
-
+interface UserProjectList {
+    projects: {
+        projectId: string;
+        isSubmitted: boolean;
+        isApproved: boolean;
+    }[]
+}
 // Type assertion for your realProjects data
 // const typedProjects = projectData as Project[];
 
@@ -57,14 +64,42 @@ const ProjectsPage: React.FC = () => {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const [startingProject, setStartingProject] = useState<Boolean>(false);
     const { toast } = useToast();
-    const { data: session, status } = useSession();
+    const session = useSession();
     const router = useRouter();
+    const [projectList, setProjectList] = useState<UserProjectList["projects"] | null>([]);
 
-    // useEffect(() => {
-    //     if (!session?.user) {
-    //         router.push("/signin");
-    //     }
-    // }, [session, router])
+    useEffect(() => {
+        const fetchUserProjectLists = async () => {
+            try {
+                const response = await userProjectList();
+                if (!response) {
+                    toast({
+                        title: "Failed to fetch the user project lists"
+                    })
+                }
+                setProjectList(response.projects);
+            } catch (err: any) {
+                toast({
+                    title: "Error fetching project list",
+                    description: err.message
+                });
+            }
+        }
+        fetchUserProjectLists();
+    }, [])
+
+    const generateProjectStatus = (projectId: string) => {
+        const project = projectList && projectList.find(p => p.projectId === projectId);
+
+        if(startingProject) {
+            return "Starting the Project";
+        }
+        if (!project) return "Start Project";
+        if (project.isApproved) return "Approved";
+        if (project.isSubmitted) return "Submitted";
+        if (!project.isSubmitted) return "Submit Project";
+        return "Start Project";
+    }
 
     const filteredProjects = projectData.filter((project) => {
         const categoryMatch = activeCategory === 'All' || project.tags.includes(activeCategory);
@@ -80,40 +115,65 @@ const ProjectsPage: React.FC = () => {
         });
     }
     const handleProjectStart = async (id: string, projectName: string) => {
-        toast({
-            title: "Coming Soon...",
-            description: "We are working on this features which enables you to start a projects that will be added to your dashboard and will be evaluated by us.",
-            variant: "default"
-        });
-        // console.log("Id of the Project: " + id);
-        // setStartingProject(true);
+        // Functions to check if the project isalready submitted ot started or approved, then it will stop the action on the top:
+        const currentStatus = generateProjectStatus(id);
+        if(currentStatus === "Submitted") {
+            toast({
+                title: "Project Already Submitted",
+                description: "This project has already been submitted. Check your dashboard for details."
+            });
+            return;
+        }
+        if(currentStatus === "Approved") {
+            toast({
+                title: "Project Already Approved",
+                description: "This project has been approved. No further action needed."
+            });
+            return;
+        }
+        if(currentStatus !== "Start Project") {
+            toast({
+                title: "Invalid Project Status",
+                description: "Please submit the project from your dashboard."
+            });
+            return;
+        }
 
-        // try {
-        //     const response = await axios.post("/api/projectstart", { id, session?.user?.name, projectName }, {
-        //         headers: {
-        //             "Content-Type": "application/json"
-        //         }
-        //     })
-        //     console.log(response.data.data);
-        //     if(response.status === 201 || response.status === 200) {
-        //         toast({
-        //             title: "Successfully Started a Project",
-        //             description: "Please complete the project with less amount of time and do everything that is listed to get high grades"
-        //         })
-        //     }
-        // } catch(err: any) {
-        //     if (axios.isAxiosError(err)) {
-        // 		toast({
-        // 			title: err.response?.data?.err || 'Failed to Start a Project. Please try again after some time.',
-        // 		});
-        // 	} else {
-        // 		toast({
-        // 			title: 'Failed to Start a Project. Please try again after some time.',
-        // 		});
-        // 	}
-        // } finally {
-        //     setStartingProject(false);
-        // }
+        if (!id || !projectName) {
+            toast({
+                title: "Invalid Project",
+                description: "Please select a valid project."
+            });
+            return;
+        }
+        setStartingProject(true);
+        try {
+            const response = await axios.post("/api/projectstart", { id, projectName }, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            console.log(response.data.data);
+            if (response.status === 201 || response.status === 200) {
+                toast({
+                    title: "Successfully Started a Project",
+                    description: "Please complete the project with less amount of time and do everything that is listed to get high grades"
+                })
+                router.refresh();
+            }
+        } catch (err: any) {
+            if (axios.isAxiosError(err)) {
+                toast({
+                    title: err.response?.data?.err || 'Failed to Start a Project. Please try again after some time.',
+                });
+            } else {
+                toast({
+                    title: 'Failed to Start a Project. Please try again after some time.',
+                });
+            }
+        } finally {
+            setStartingProject(false);
+        }
     }
 
     return (
@@ -154,7 +214,7 @@ const ProjectsPage: React.FC = () => {
                                     <span className="text-xs sm:text-sm text-black dark:text-white">Join 100+ developers building projects</span>
                                 </div>
                             </div>
-                            <motion.div 
+                            <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
@@ -186,6 +246,7 @@ const ProjectsPage: React.FC = () => {
                                         alt=""
                                         width={100}
                                         height={100}
+                                        priority
                                     />
                                 </div>
                                 <h3 className="text-xl font-semibold mb-2">Become job ready</h3>
@@ -193,7 +254,7 @@ const ProjectsPage: React.FC = () => {
                                     Kickstart your career by building stellar proof of work
                                 </p>
                             </motion.div>
-                            <motion.div 
+                            <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
@@ -213,7 +274,7 @@ const ProjectsPage: React.FC = () => {
                                     Upskill by building hands-on projects with stepwise guidance
                                 </p>
                             </motion.div>
-                            <motion.div 
+                            <motion.div
                                 initial={{ opacity: 0, y: -20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
@@ -359,7 +420,7 @@ const ProjectsPage: React.FC = () => {
                 </main>
 
                 <Sheet open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-                    <SheetContent className="w-full md:max-w-[640px] overflow-y-auto">
+                    <SheetContent className="w-full h-full sm:w-[80vw] md:w-[55vw] sm:max-w-[80vw] p-6 overflow-y-auto" style={{ maxWidth: "90vw" }}>
                         {
                             selectedProject && (
                                 <div className="space-y-8 text-black dark:text-white">
@@ -509,7 +570,7 @@ const ProjectsPage: React.FC = () => {
                                             onClick={() => handleProjectStart(selectedProject?.id, selectedProject?.title)}
                                         >
                                             {
-                                                startingProject ? "Starting Project" : "Start Building"
+                                                generateProjectStatus(selectedProject?.id)
                                             }
                                         </ShimmerButton>
                                     </div>
