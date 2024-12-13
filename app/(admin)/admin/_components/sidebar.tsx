@@ -62,12 +62,15 @@ export function Sidebar({ className }: SidebarProps) {
                                 Pathways
                             </Link>
                         </Button>
-                        {/* <Button variant="ghost" className="w-full justify-start" asChild>
-                            <Link href="/admin/settings">
-                                <Settings className="mr-2 h-4 w-4" />
-                                Settings
+                        <Button 
+                            variant={isActive("/admin/contacts") ? "secondary" : "ghost"}
+                            className="w-full justify-start" asChild
+                        >
+                            <Link href="/admin/contacts">
+                                <FolderKanban className="mr-2 h-4 w-4" />
+                                Contacts
                             </Link>
-                        </Button> */}
+                        </Button>
                     </div>
                 </div>
             </div>

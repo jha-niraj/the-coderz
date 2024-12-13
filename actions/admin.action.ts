@@ -12,7 +12,11 @@ interface UserRegistration {
 // User related API calls:
 export async function getUsersCount() {
     try {
-        return await prisma.user.count({});
+        return await prisma.user.count({
+            where: {
+                role: "Student"
+            }
+        });
     } catch (err: any) {
         console.error("Error Occurred while getting the mentee count", err);
         return err;
@@ -161,5 +165,19 @@ export async function approveProject(projectId: string) {
         return { success: true };
     } catch (err: any) {
         console.error("Error Approving Projects:", err);
+    }
+}
+
+// Contact Submission from the Main Page or Somewhere else:
+export async function getSubmittedContacts() {
+    try {
+        const contactResponse = await prisma.contactSubmission.findMany({});
+        if(!contactResponse) {
+            return null;
+        }
+        return contactResponse;
+    } catch(err: any) {
+        console.error("Error Approving Projects:", err);
+        return null;
     }
 }
