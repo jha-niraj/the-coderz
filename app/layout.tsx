@@ -7,6 +7,7 @@ import ClientLayout from "./clientlayout";
 import { ThemeProvider } from "@/components/themeprovider";
 import MainLayout from "./mainlayout";
 import { Toaster } from "@/components/ui/toaster";
+import { GoogleAnalytics } from "@/components/analytics/googleanalytics";
 
 const poppins = Poppins({ subsets: ["latin"], weight: "300" });
 
@@ -21,8 +22,9 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html suppressHydrationWarning={true} lang="en">
 			<body className={poppins.className} style={{ scrollBehavior: "smooth" }}>
+				<GoogleAnalytics />
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="system"

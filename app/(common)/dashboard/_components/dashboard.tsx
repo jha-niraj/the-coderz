@@ -233,6 +233,7 @@ export default function DashboardPage() {
                                             activeProjectLists?.map((project, index) => {
                                                 return (
                                                     <ProjectCard 
+                                                        key={index}
                                                         title={project.projectName}
                                                         description=""
                                                         status="In Progress"
@@ -250,7 +251,8 @@ export default function DashboardPage() {
                                         {
                                             submittedApprovedProjectLists?.map((project, index) => {
                                                 return (
-                                                    <ProjectCard 
+                                                    <ProjectCard
+                                                        key={index} 
                                                         title={project.projectName}
                                                         description=""
                                                         status={ project.isSubmitted ? project.isApproved ? "Approved" : "" : "Submitted" }
