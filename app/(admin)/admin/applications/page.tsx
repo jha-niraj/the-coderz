@@ -1,9 +1,12 @@
+export const dynamic = 'force-dynamic';
+
 import { getCareersApplications } from "@/actions/admin.action"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import Link from "next/link"
 
 export default async function UserTable() {
     const usersCareersApplications = await getCareersApplications();
+    console.log(usersCareersApplications);
 
     return (
         <div className="container mx-auto py-10">

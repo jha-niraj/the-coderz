@@ -81,7 +81,7 @@ export default function CareersPage() {
         <div className="min-h-screen max-w-7xl pt-20 mx-auto">
             <div className="min-h-screen">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
-                    <div className="fixed w-56 top-20 right-4 z-50">
+                    <div className="fixed w-full sm:w-56 top-20 right-0 sm:right-4 z-50">
                         <ShineBorder>
                             <motion.div
                                 initial={{ opacity: 0, x: 20 }}
@@ -90,7 +90,7 @@ export default function CareersPage() {
                                 className="rounded-lg flex items-center gap-2"
                             >
                                 <AlertCircle className="h-5 w-5 flex-shrink-0" />
-                                <p className="text-sm text-left font-medium">
+                                <p className="text-sm text-center sm:text-left font-medium">
                                     These are unpaid internships with potential for full-time conversion.
                                 </p>
                             </motion.div>
@@ -132,7 +132,7 @@ export default function CareersPage() {
                         >
                             Current Openings
                         </motion.h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <JobListing
                                 title="Full Stack Developer"
                                 description="We're looking for a passionate Full Stack Developer with strong React skills to help build and maintain our cutting-edge E-Learning platform."
