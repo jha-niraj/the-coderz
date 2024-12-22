@@ -3,7 +3,7 @@
 import { cn } from "@/app/lib/utils"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { LayoutDashboard, Users, FolderKanban, GitFork, Settings, LogOut } from 'lucide-react'
+import { LayoutDashboard, Users, FolderKanban, GitFork, Settings, LogOut, AppleIcon } from 'lucide-react'
 import { signOut } from "next-auth/react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -69,6 +69,15 @@ export function Sidebar({ className }: SidebarProps) {
                             <Link href="/admin/contacts">
                                 <FolderKanban className="mr-2 h-4 w-4" />
                                 Contacts
+                            </Link>
+                        </Button>
+                        <Button 
+                            variant={isActive("/admin/applications") ? "secondary" : "ghost"}
+                            className="w-full justify-start" asChild
+                        >
+                            <Link href="/admin/applications">
+                                <AppleIcon className="mr-2 h-4 w-4" />
+                                Applications
                             </Link>
                         </Button>
                     </div>

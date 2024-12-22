@@ -100,7 +100,6 @@ model ProofOfWork {
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt
 }
-
 model ContactSubmission {
     id          String   @id @default(cuid())
     name        String
@@ -111,4 +110,16 @@ model ContactSubmission {
     createdAt   DateTime @default(now())
 
     @@map("contact_submissions")
+}
+model Applications {
+    id              String  @id @default(uuid())
+    name            String
+    email           String  @unique
+    github          String
+    linkedin        String
+    position        String
+    coverletter     String
+    createdAt       DateTime    @default(now())
+
+    @@map("applications")
 }

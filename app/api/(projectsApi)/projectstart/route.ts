@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
             status: 201,
             headers: { 'Content-Type': 'application/json' }
         });
-    } catch (err: any) {
+    } catch(err: any) {
         console.error('Project Start error:', err);
         return new Response(JSON.stringify({ error: 'Failed to start a Project' }), {
             status: 500,

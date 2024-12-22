@@ -138,7 +138,6 @@ export const getProjectsCounts = async () => {
         };
     }
 }
-
 export const getSubmittedProjects = async () => {
     try {
         const projects = await prisma.projects.findMany({
@@ -176,6 +175,20 @@ export async function getSubmittedContacts() {
             return null;
         }
         return contactResponse;
+    } catch(err: any) {
+        console.error("Error Approving Projects:", err);
+        return null;
+    }
+}
+
+// Applications submission from the careers page:
+export async function getCareersApplications() {
+    try {
+        const applications = await prisma.applications.findMany({});
+        if(!applications) {
+            return null;
+        } 
+        return applications;
     } catch(err: any) {
         console.error("Error Approving Projects:", err);
         return null;

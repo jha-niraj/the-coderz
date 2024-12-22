@@ -14,6 +14,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import mainWebLogo from "@/app/lib/WhatsApp Image 2024-10-09 at 19.48.26.jpeg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { RainbowButton } from "../ui/rainbow-button";
 
 export default function Navbar({ className }: { className?: string }) {
     const [active, setActive] = useState<string | null>(null);
@@ -94,6 +95,9 @@ export default function Navbar({ className }: { className?: string }) {
                             <HoveredLink href="/services">Powerpoint Creation</HoveredLink>
                         </div>
                     </MenuItem>
+                    <Link href="/careers">
+                        <RainbowButton>Careers</RainbowButton>
+                    </Link>
                 </div>
                 <div className="hidden md:flex gap-2 items-center justify-center">
                     <div>
