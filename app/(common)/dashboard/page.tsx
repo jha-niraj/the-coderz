@@ -23,7 +23,7 @@ export default function Dashboard() {
 
     return (
         <SmoothScroll>
-            <DashboardPage />
+            <StudentDashboard />
         </SmoothScroll>
     )
 }
