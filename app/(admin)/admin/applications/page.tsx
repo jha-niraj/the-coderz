@@ -2,7 +2,7 @@ import { getCareersApplications } from "@/actions/admin.action"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import Link from "next/link"
 
-export async function UserTable() {
+export default async function UserTable() {
     const usersCareersApplications = await getCareersApplications();
 
     return (
