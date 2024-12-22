@@ -1,15 +1,8 @@
 import { getCareersApplications } from "@/actions/admin.action"
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import Link from "next/link"
 
-interface User {
-    name: string
-    skill: string
-    yearOfStudy: string
-    email: string
-    details: string
-}
-export default async function UserTable() {
+export async function UserTable() {
     const usersCareersApplications = await getCareersApplications();
 
     return (
