@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
         }
         return NextResponse.json({ msg: "Application submitted successfully", response }, { status: 200 });
     } catch (err: any) {
-        console.log("Error while updating Interests Section: " + err);
-        return NextResponse.json({ msg: "Error while updating interests section" }, { status: 501 });
+        console.log("Error while submitting application: " + err);
+        return NextResponse.json({ msg: "Error while submitting application" }, { status: 501 });
     }
 }
