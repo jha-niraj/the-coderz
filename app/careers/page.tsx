@@ -22,10 +22,6 @@ interface JobListingProps {
     description: string;
     requirements: string[];
 }
-interface ApplicationFormProps {
-    isOpen: Boolean;
-    onClose: () => void;
-}
 export default function CareersPage() {
     const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -54,27 +50,24 @@ export default function CareersPage() {
 
         try {
             const response = await axios.post("/api/applications", formData);
-            if (!response) {
-                toast({
-                    title: "Failed to submit the application",
-                    description: "Please try after sometime..."
-                })
-            }
-            
-            const data = await response.data;
             toast({
-                title: data.msg,
-                description: "We will be contacting as soon as possible and if you fit the profile, we will scheduling an interview."
-            })
+                title: response.data.msg,
+                description: "We will be contacting you as soon as possible and if you fit the profile, we will schedule an interview."
+            });
         } catch (err: any) {
-            console.log("Failed to submit the application: ", err);
+            console.error("Submission error details:", {
+                message: err.message,
+                response: err.response?.data,
+                status: err.response?.status
+            });
             toast({
-                title: err.data.msg
-            })
+                title: "Error",
+                description: err.response?.data?.msg || "Failed to submit application. Please try again.",
+                variant: "destructive",
+            });
         } finally {
             setIsSubmitting(false);
         }
-
     }
 
     return (

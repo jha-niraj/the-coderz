@@ -5,6 +5,15 @@ export async function POST(req: NextRequest) {
     try {
         const { name, email, github, linkedin, position, coverletter } = await req.json();
 
+        const checkIfApplicationAlreadySubmitted = await prisma.applications.findFirst({
+            where: {
+                email
+            }
+        })
+        if(checkIfApplicationAlreadySubmitted) {
+            return NextResponse.json({ msg: "Application already submitted with this email" }, { status: 403 });
+        }
+
         if(!name || !email || !github || !linkedin || !position || !coverletter) {
             return NextResponse.json({ msg: "Please fill all the fields" }, { status: 503 });
         }
