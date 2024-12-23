@@ -74,7 +74,7 @@ export default function CareersPage() {
         <div className="min-h-screen max-w-7xl pt-20 mx-auto">
             <div className="min-h-screen">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
-                    <div className="fixed w-full sm:w-56 top-20 right-0 sm:right-4 z-50">
+                    <div className="fixed w-full sm:w-56 top-20 right-0 sm:right-4 z-20">
                         <ShineBorder>
                             <motion.div
                                 initial={{ opacity: 0, x: 20 }}
