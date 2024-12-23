@@ -108,7 +108,6 @@ export default function CareersPage() {
                             <ShimmerButton onClick={openForm} className="w-72 mx-auto text-white">
                                 Apply Now
                             </ShimmerButton>
-                            <FloatingElements />
                         </motion.div>
                         <div className="absolute inset-0 z-0">
                             <svg className="absolute left-0 w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -178,6 +177,10 @@ export default function CareersPage() {
                             <Label htmlFor="email">Email</Label>
                             <Input id="email" type="email" value={formData.email} onChange={handleInputChange} placeholder='johndoe@gmail.com' required />
                         </div>
+                        {/* <div>
+                            <Label htmlFor="phonenumber">Contact Number(WhatsApp)</Label>
+                            <Input id="phonenumber" type="text" value={formData.phonenumber} onChange={handleInputChange} placeholder='12345678910' required />
+                        </div> */}
                         <div>
                             <Label htmlFor="github">GitHub</Label>
                             <Input id="github" type="text" value={formData.github} onChange={handleInputChange} placeholder='https://github.com/johndoe' required />

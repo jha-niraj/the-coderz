@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
     try {
-        const { name, email, github, linkedin, position, coverletter } = await req.json();
+        const { name, email, phonenumber, github, linkedin, position, coverletter } = await req.json();
 
         const checkIfApplicationAlreadySubmitted = await prisma.applications.findFirst({
             where: {
@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ msg: "Application already submitted with this email" }, { status: 403 });
         }
 
-        if(!name || !email || !github || !linkedin || !position || !coverletter) {
+        if(!name || !email || ! phonenumber || !github || !linkedin || !position || !coverletter) {
             return NextResponse.json({ msg: "Please fill all the fields" }, { status: 503 });
         }
 
