@@ -15,7 +15,8 @@ import ShimmerButton from '@/components/ui/shimmer-button'
 import ShineBorder from '@/components/ui/shine-border'
 import { RainbowButton } from '@/components/ui/rainbow-button'
 import axios from 'axios'
-import { toast } from '@/hooks/use-toast'
+import { toast } from '@/hooks/use-toast';
+import Link from 'next/link'
 
 interface JobListingProps {
     title: string;
@@ -105,9 +106,11 @@ export default function CareersPage() {
                                 Our mission is to bridge the gap between traditional education and the fast-paced tech industry,
                                 providing aspiring developers with the skills, experience, and connections they need to thrive in their careers.
                             </p>
-                            <ShimmerButton onClick={openForm} className="w-72 mx-auto text-white">
-                                Apply Now
-                            </ShimmerButton>
+                            <Link href="https://form.jotform.com/243581704509055" target="_blank">
+                                <ShimmerButton className="w-72 mx-auto text-white">
+                                    Apply Now
+                                </ShimmerButton>
+                            </Link>
                         </motion.div>
                         <div className="absolute inset-0 z-0">
                             <svg className="absolute left-0 w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -152,9 +155,11 @@ export default function CareersPage() {
                             transition={{ duration: 0.5, delay: 0.2 }}
                             className="mt-12 text-center"
                         >
-                            <ShimmerButton onClick={openForm} className="w-72 mx-auto text-white">
-                                Apply Now
-                            </ShimmerButton>
+                            <Link href="https://form.jotform.com/243581704509055" target="_blank">
+                                <ShimmerButton className="w-72 mx-auto text-white">
+                                    Apply Now
+                                </ShimmerButton>
+                            </Link>
                         </motion.div>
                     </main>
                 </div>
